@@ -1,0 +1,29 @@
+.main-label {
+    font-size: 40px;
+    color: white;
+}
+
+.main-link-button {
+    font-family: 'Roboto', sans-serif;
+    padding: 12px 12px;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 20px;
+    border: 2px solid #0a5baf;
+    border-radius: 10px;
+    color: #0a95db;
+}
+
+.button-container {
+    margin-top: 25px;
+}
+  
+.main-link-button:hover {
+    background-color: #0a5baf;
+    color: #f9f9f9;
+}
+
+.main-description-text {
+    color: #0a95db;
+    font-size: 18px;
+}

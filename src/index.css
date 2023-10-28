@@ -1,0 +1,11 @@
+ :root {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+ 
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

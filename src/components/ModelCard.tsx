@@ -12,7 +12,7 @@ interface Modelings {
 
 const ModelingsCard: FC<Modelings> = ({ modeling_id, modeling_name, modeling_description, modeling_price, modeling_url }) => (
     <Card className="card">
-        <Card.Img className="cardImage" variant="top" src="/logo.phg" height={100} width={100}  />
+        <Card.Img className="cardImage" variant="top" src="/logo.png" height={100} width={100}  />
         <Card.Body>                
             <div className="textStyle">
                 <Card.Title>{modeling_name}</Card.Title>

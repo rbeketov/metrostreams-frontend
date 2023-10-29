@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import { Col, Row, Spinner } from 'react-bootstrap'
 import NavbarAnyMetro from './components/Navbar';
 import Label from './components/Label';

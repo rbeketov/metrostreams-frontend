@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Card } from 'react-bootstrap';
-import './ModelCard.css'; // Ваши собственные стили
+import './ModelCard.css';
 
 interface Modelings {
   modeling_id: number;
@@ -29,6 +29,8 @@ const ModelingsCard: FC<Modelings> = ({
       </div>
       <div className="textStyle">
         <Card.Text>
+          {modeling_id}
+          {modeling_description}
           {modeling_price}
         </Card.Text>
       </div>

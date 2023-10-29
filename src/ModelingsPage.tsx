@@ -10,12 +10,12 @@ import { Modelings, getModelings } from './modules/get-modelings';
 const ModelingsPage: FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const [modelings, setModelings] = useState<Modelings[]>([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleSearchSubmit = async () => {
     setLoading(true);
     const data = await getModelings(searchValue);
-    setModelings(data.results);
+    setModelings(data);
     setLoading(false);
   }
 
@@ -23,26 +23,29 @@ const ModelingsPage: FC = () => {
     <div>
       <NavbarAnyMetro />
       <Label />
-      <InputField
-        value={searchValue}
-        setValue={setSearchValue}
-        onSubmit={handleSearchSubmit}
-        loading={loading}
-        placeholder="Поиск..."
-        buttonTitle="Искать"
-      />
-      <div>
-        {!modelings.length && <div>
-          <h1>К сожалению, пока ничего не найдено :(</h1>
-        </div>}
+      <div className={`container ${loading && 'containerLoading'}`}>
+        {loading && <div className="loadingBg"><Spinner animation="border"/></div>}
+        <InputField
+          value={searchValue}
+          setValue={setSearchValue}
+          onSubmit={handleSearchSubmit}
+          loading={loading}
+          placeholder="Поиск..."
+          buttonTitle="Искать"
+        />
+        <div>
+          {!modelings?.length && <div>
+            <h1>К сожалению, пока ничего не найдено :(</h1>
+          </div>}
 
-        <Row xs={4} md={4} className="g-4">
-          {modelings.map((item, index) => (
-            <Col key={index}>
-              <ModelingsCard {...item} />
-            </Col>
-          ))}
-        </Row>
+          <Row xs={4} md={4} className="g-4">
+            {modelings?.map((item, index) => (
+              <Col key={index}>
+                <ModelingsCard {...item} />
+              </Col>
+            ))}
+          </Row>
+        </div>
       </div>
       <FooterAnyMetro />
     </div>

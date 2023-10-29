@@ -3,15 +3,15 @@ export interface Modelings {
     modeling_name: string;
     modeling_description: string;
     modeling_price: string;
-    modeling_url: string;
+    modeling_image: string;
 }
 
-export interface ModelingsResult {
-    results: Modelings[];
-}
-
-export const getModelings = async (name = ''): Promise<ModelingsResult> => {
-    return fetch(`/modelings/?name=${name}`)
+export const getModelings = async (name = ''): Promise<Modelings[]> => {
+    return fetch(`http://localhost:8000/modelings/?name=${name}`, {
+        headers: {
+          'Origin': 'http://localhost:3000',
+          'Access-Control-Allow-Origin': '3000',
+        }})
         .then((response) => response.json())
-        .catch(() => ({ results: [] }));
+        .catch(() => ([]));
 }

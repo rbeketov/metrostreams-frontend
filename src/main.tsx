@@ -7,7 +7,7 @@ import './index.css';
 
 const router = createBrowserRouter([
   {
-    path: '/home/',
+    path: '/modelings/',
     element: <ModelingsPage />,
   },
 ]);

@@ -1,24 +1,21 @@
-.card {
-    padding: 8px;
+.custom-card {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 15px;
+    }
+  
+.custom-card-img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
 }
-.loadingBg {
-    z-index: 999;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.textStyle {
-    height:48px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    margin-bottom:12px;
-}
-.cardImage {
-    object-fit: contain;
-}
-.cardButton {
-    width: 100%;
+  
+.custom-card-text {
+    font-weight: bold;
+    margin-top: 10px;
 }

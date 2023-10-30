@@ -1,4 +1,4 @@
-export interface Modelings {
+export interface ModelingsDetails {
     modeling_id: number;
     modeling_name: string;
     modeling_description: string;
@@ -6,8 +6,8 @@ export interface Modelings {
     modeling_image: string;
 }
 
-export const getModelings = async (name = '', minPrice=0, maxPrce=99000): Promise<Modelings[]> => {
-    return fetch(`http://localhost:8000/modelings/?name=${name}&price_under=${minPrice}&price_upper=${maxPrce}`, {
+export const getModelingsDetail = async (id: number): Promise<ModelingsDetails> => {
+    return fetch(`http://localhost:8000/modelings/${id}/`, {
         method: 'GET',
         }) 
         .then((response) => response.json())

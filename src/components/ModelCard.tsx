@@ -17,25 +17,15 @@ const ModelingsCard: FC<Modelings> = ({
   modeling_price,
   modeling_image,
 }) => (
-  <Card className="custom-card">
-    <Card.Img
-      className="custom-card-img"
-      variant="top"
-      src={`data:image/png;base64,${modeling_image}`}
-    />
-    <Card.Body>
-      <div className="textStyle">
-        <Card.Title>{modeling_name}</Card.Title>
+    <div className="custom-card">
+    <a className="card-href" href={`/modelings/${modeling_id}`}>
+      <img src={`data:image/png;base64,${modeling_image}`} alt={modeling_name} className="custom-card-img" />
+      <div className="custom-card-body">
+        <p className="custom-card-text text-center">{modeling_name}</p>
+        <p className="custom-card-price text-center">{modeling_price} рублей</p>
       </div>
-      <div className="textStyle">
-        <Card.Text>
-          {modeling_id}
-          {modeling_description}
-          {modeling_price}
-        </Card.Text>
-      </div>
-    </Card.Body>
-  </Card>
+    </a>
+  </div>
 );
 
 export default ModelingsCard;

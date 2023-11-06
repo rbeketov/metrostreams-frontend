@@ -5,11 +5,11 @@ import Label from './components/Label';
 import InputField from './components/InputField';
 import ModelingsCard from './components/ModelCard';
 import FooterAnyMetro from './components/Footer';
-import { Modelings, getModelings } from './modules/get-modelings';
+import { ModelingImage, getModelings } from './modules/get-modelings';
 
 const ModelingsPage: FC = () => {
   const [searchValue, setSearchValue] = useState('');
-  const [modelings, setModelings] = useState<Modelings[]>([]);
+  const [modelings, setModelings] = useState<ModelingImage[]>([]);
   const [loading, setLoading] = useState(false);
   const [minPrice, setMinPrice] = useState<number | number[]>(0);
   const [maxPrice, setMaxPrice] = useState<number | number[]>(99000);

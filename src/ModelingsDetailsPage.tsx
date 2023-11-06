@@ -25,7 +25,7 @@ const ModelingsDetailsPage: FC = () => {
         <NavbarAnyMetro />
         <div className="model-card">
             <div className="model-card-image">
-                <img src={`data:image/png;base64,${details?.modeling_image}`} alt={details?.modeling_name} className="model-detail-card" />
+                <img src={`${details?.modeling_image}`} alt={details?.modeling_name} className="model-detail-card" />
             </div>
             <div className="model-card-description">
                 <h2>{details?.modeling_name}</h2>

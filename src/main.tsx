@@ -10,7 +10,7 @@ import './index.css';
 
 
 const base_path = process.env.GITHUB_ACTIONS ? 'metrostreams-frontend/' : '/';
-const FlexibleRouter = process.env.GITHUB_ACTIONS ? HashRouter : BrowserRouter;
+// const FlexibleRouter = process.env.GITHUB_ACTIONS ? HashRouter : BrowserRouter;
 
 
 function RedirectComponent() {
@@ -21,13 +21,26 @@ function RedirectComponent() {
   return null;
 }
 
-ReactDOM.render(
-  <FlexibleRouter>
-    <Routes>
-      <Route path={base_path} element={<RedirectComponent />}/>
-      <Route path="modelings/" element={<ModelingsPage />}/>
-      <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
-    </Routes>
-  </FlexibleRouter>,
-  document.getElementById('root')
-);
+if (process.env.GITHUB_ACTIONS) {
+  ReactDOM.render(
+    <HashRouter>
+      <Routes>
+        <Route path={base_path} element={<RedirectComponent />}/>
+        <Route path="modelings/" element={<ModelingsPage />}/>
+        <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
+      </Routes>
+    </HashRouter>,
+    document.getElementById('root')
+  );
+} else {
+  ReactDOM.render(
+    <BrowserRouter>
+      <Routes>
+        <Route path={base_path} element={<RedirectComponent />}/>
+        <Route path="modelings/" element={<ModelingsPage />}/>
+        <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
+      </Routes>
+    </BrowserRouter>,
+    document.getElementById('root')
+  );
+}

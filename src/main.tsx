@@ -2,18 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ModelingsPage from './components/ModelingsPage.tsx';
 import ModelingsDetailsPage from './components/ModelingsDetailsPage.tsx';
-import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider,  } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
-function RedirectComponent() {
-  const navigate = useNavigate();
-  React.useEffect(() => {
-    navigate('modelings/');
-  }, [navigate]);
+// useNavigate
+// function RedirectComponent() {
+//   const navigate = useNavigate();
+//   React.useEffect(() => {
+//     navigate('modelings/');
+//   }, [navigate]);
 
-  return null;
-}
+//   return null;
+// }
 
 const base_path = process.env.GITHUB_ACTIONS ? 'metrostreams-frontend/' : '/';
 

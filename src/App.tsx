@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
             <Routes>
-                <Route path="modelings/" element={<ModelingsPage />}/>
-                <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
+                <Route path="/modelings/" element={<ModelingsPage />}/>
+                <Route path="/modelings/:id/" element={<ModelingsDetailsPage />} />
             </Routes>
     </BrowserRouter>
 );

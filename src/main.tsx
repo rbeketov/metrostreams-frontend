@@ -9,7 +9,7 @@ import './index.css';
 function RedirectComponent() {
   const navigate = useNavigate();
   React.useEffect(() => {
-    navigate('/modelings/');
+    navigate('modelings/');
   }, [navigate]);
 
   return null;

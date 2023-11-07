@@ -80,9 +80,6 @@ const ModelingsPage: FC = () => {
               )}
             </div>
           </Container>
-
-
-
       <FooterAnyMetro />
     </div>
   );

@@ -20,7 +20,7 @@ const base_path = process.env.GITHUB_ACTIONS ? 'metrostreams-frontend/' : '/';
 const router = createBrowserRouter([
   {
     path: base_path,
-    element: <RedirectComponent />,
+    element: <ModelingsPage />,
   },
   {
     path: 'modelings/',

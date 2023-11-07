@@ -21,18 +21,18 @@ function RedirectComponent() {
   return null;
 }
 
-if (process.env.GITHUB_ACTIONS) {
-  ReactDOM.render(
-    <HashRouter>
-      <Routes>
-        <Route path={base_path} element={<RedirectComponent />}/>
-        <Route path="modelings/" element={<ModelingsPage />}/>
-        <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
-      </Routes>
-    </HashRouter>,
-    document.getElementById('root')
-  );
-} else {
+// if (process.env.GITHUB_ACTIONS) {
+//   ReactDOM.render(
+//     <HashRouter>
+//       <Routes>
+//         <Route path={base_path} element={<RedirectComponent />}/>
+//         <Route path="modelings/" element={<ModelingsPage />}/>
+//         <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
+//       </Routes>
+//     </HashRouter>,
+//     document.getElementById('root')
+//   );
+// } else {
   ReactDOM.render(
     <BrowserRouter>
       <Routes>
@@ -43,4 +43,4 @@ if (process.env.GITHUB_ACTIONS) {
     </BrowserRouter>,
     document.getElementById('root')
   );
-}
+// }

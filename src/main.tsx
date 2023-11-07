@@ -17,7 +17,7 @@ function RedirectComponent() {
   return null;
 }
 
-const base_path = process.env.GITHUB_ACTIONS ? 'metrostreams-frontend/' : '/';
+const base_path = process.env.GITHUB_ACTIONS ? 'metrostreams-frontend/#/' : '/';
 const FlexibleRouter = process.env.GITHUB_ACTIONS ? HashRouter : BrowserRouter
 
 // const router = createBrowserRouter([

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 
-const base_path = process.env.GITHUB_ACTIONS ? '/metrostreams-frontend/' : '/';
+const base_path = process.env.GITHUB_ACTIONS ? '' : '/';
 
 
 // https://vitejs.dev/config/

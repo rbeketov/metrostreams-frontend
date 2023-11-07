@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import '../style/InputField.css';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import '../style/InputField.css';
 
 interface SearchValue {
   value: string;

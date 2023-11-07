@@ -1,7 +1,8 @@
 import { Container, Row, Col} from 'react-bootstrap';
 
-import '../style/Label.css'
 import backgroundImage from '/cloud_splash.jpg';
+
+import '../style/Label.css'
 
 function Label() {
   const sectionStyle = {

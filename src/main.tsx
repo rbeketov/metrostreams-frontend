@@ -1,17 +1,24 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import ModelingsPage from './components/ModelingsPage.tsx';
 import ModelingsDetailsPage from './components/ModelingsDetailsPage.tsx';
-import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
-const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
-);
+const router = createBrowserRouter([
+  {
+    path: '/modelings/',
+    element: <ModelingsPage />,
+  },
+  {
+    path: '/modelings/:id/',
+    element: <ModelingsDetailsPage />,
+  },
+]);
 
-root.render(
-    <BrowserRouter>
-            <Routes>
-                <Route path="/modelings/" element={<ModelingsPage />}/>
-                <Route path="/modelings/:id/" element={<ModelingsDetailsPage />} />
-            </Routes>
-    </BrowserRouter>
-);
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>,
+)

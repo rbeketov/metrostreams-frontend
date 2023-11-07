@@ -45,7 +45,7 @@ const base_path = process.env.GITHUB_ACTIONS ? 'metrostreams-frontend/' : '/';
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path={base_path} element={<RedirectComponent />}/>
+      <Route path={base_path} element={<ModelingsPage />}/>
       <Route path="modelings/" element={<ModelingsPage />}/>
       <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
     </Routes>

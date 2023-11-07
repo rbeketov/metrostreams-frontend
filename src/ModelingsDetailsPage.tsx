@@ -2,11 +2,11 @@ import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavbarAnyMetro from './components/Navbar';
 import FooterAnyMetro from './components/Footer';
-import { ModelingsDetails, getModelingsDetail } from './modules/get-modelings-detail';
+import { ModelingsDetailsImage, getModelingsDetail } from './modules/get-modelings-detail';
 import './ModelingsDetailsPage.css'
 
 const ModelingsDetailsPage: FC = () => {
-  const [details, setDetails] = useState<ModelingsDetails | null>(null);
+  const [details, setDetails] = useState<ModelingsDetailsImage | null>(null);
   const { id } = useParams<{ id: string }>();
 
   const handlerGetDetail = async () => {

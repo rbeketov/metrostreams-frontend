@@ -65,7 +65,7 @@ export const getModelings = async (name = '', minPrice = 0, maxPrice = 99000): P
 
 
 
-async function getImageForModeling(modelingUrl: string): Promise<string> {
+export async function getImageForModeling(modelingUrl: string): Promise<string> {
   try {
     const response = await fetch(`http://localhost:80/bucket-modelings/${modelingUrl}`, {
       method: 'GET',

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import './InputField.css';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';

@@ -4,7 +4,7 @@ import ModelingsPage from './components/ModelingsPage.tsx';
 import ModelingsDetailsPage from './components/ModelingsDetailsPage.tsx';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter} from "react-router-dom";
+// import {BrowserRouter} from "react-router-dom";
 import {HashRouter, Route, Routes} from "react-router-dom";
 import './index.css';
 
@@ -33,14 +33,14 @@ function RedirectComponent() {
 //     document.getElementById('root')
 //   );
 // } else {
-  ReactDOM.render(
-    <BrowserRouter>
-      <Routes>
-        <Route path={base_path} element={<RedirectComponent />}/>
-        <Route path="modelings/" element={<ModelingsPage />}/>
-        <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
-      </Routes>
-    </BrowserRouter>,
-    document.getElementById('root')
-  );
+ReactDOM.render(
+  <HashRouter>
+    <Routes>
+      <Route path={base_path} element={<RedirectComponent />}/>
+      <Route path="modelings/" element={<ModelingsPage />}/>
+      <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
+    </Routes>
+  </HashRouter>,
+  document.getElementById('root')
+);
 // }

@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavbarAnyMetro from './Navbar';
 import FooterAnyMetro from './Footer';
+import { Link } from 'react-router-dom';
 import { ModelingsDetailsImage, getModelingsDetail } from '../modules/get-modelings-detail';
 import '../style/ModelingsDetailsPage.css'
 
@@ -31,7 +32,7 @@ const ModelingsDetailsPage: FC = () => {
                 <h2>{details?.modeling_name}</h2>
                 <p>{details?.modeling_description}</p>
                 <p>{details?.modeling_price} рублей</p>
-                <a className="btn-back-to-models" href="/modelings/">Вернуться к услугам</a>
+                <Link to="/modelings/" className="btn-back-to-models">Вернуться к услугам</Link>
             </div>
         </div>
         <FooterAnyMetro />

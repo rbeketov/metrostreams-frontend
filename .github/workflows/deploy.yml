@@ -22,6 +22,9 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
+      - name: Set GITHUB_ACTIONS variable
+        run: echo "GITHUB_ACTIONS=true" >> $GITHUB_ENV
+
       - name: Build project
         run: npm run build
 

@@ -1,9 +1,9 @@
 import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import NavbarAnyMetro from './components/Navbar';
-import FooterAnyMetro from './components/Footer';
-import { ModelingsDetailsImage, getModelingsDetail } from './modules/get-modelings-detail';
-import './ModelingsDetailsPage.css'
+import NavbarAnyMetro from './Navbar';
+import FooterAnyMetro from './Footer';
+import { ModelingsDetailsImage, getModelingsDetail } from '../modules/get-modelings-detail';
+import '../style/ModelingsDetailsPage.css'
 
 const ModelingsDetailsPage: FC = () => {
   const [details, setDetails] = useState<ModelingsDetailsImage | null>(null);

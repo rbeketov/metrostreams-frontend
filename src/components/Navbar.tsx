@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 
-import './Navbar.css';
+import '../style/Navbar.css';
 
 function NavbarAnyMetro() {
     return (

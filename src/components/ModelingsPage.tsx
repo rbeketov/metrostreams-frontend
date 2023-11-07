@@ -1,11 +1,12 @@
 import { FC, useState, useEffect } from 'react';
 import { Col, Row, Spinner, Container } from 'react-bootstrap'
-import NavbarAnyMetro from './components/Navbar';
-import Label from './components/Label';
-import InputField from './components/InputField';
-import ModelingsCard from './components/ModelCard';
-import FooterAnyMetro from './components/Footer';
-import { ModelingImage, getModelings } from './modules/get-modelings';
+import NavbarAnyMetro from './Navbar';
+import Label from './Label';
+import InputField from './InputField';
+import ModelingsCard from './ModelCard';
+import FooterAnyMetro from './Footer';
+import { ModelingImage, getModelings } from '../modules/get-modelings';
+import "../style/ModelingsPage.css"
 
 const ModelingsPage: FC = () => {
   const [searchValue, setSearchValue] = useState('');

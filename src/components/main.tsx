@@ -4,7 +4,7 @@ import ModelingsPage from './ModelingsPage.tsx';
 import ModelingsDetailsPage from './ModelingsDetailsPage.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import '../style/index.css';
 
 const router = createBrowserRouter([
   {

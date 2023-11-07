@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import './ModelCard.css';
+import '../style/ModelCard.css';
 
 interface Modelings {
   modeling_id: number;

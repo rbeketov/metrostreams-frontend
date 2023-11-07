@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar, Image} from 'react-bootstrap';
-import './Footer.css';
+import '../style/Footer.css';
 
 import backgroundImage from '/under-cloud.jpeg';
 

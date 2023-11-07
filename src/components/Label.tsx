@@ -1,6 +1,6 @@
 import { Container, Row, Col} from 'react-bootstrap';
 
-import './Label.css'
+import '../style/Label.css'
 import backgroundImage from '/cloud_splash.jpg';
 
 function Label() {

@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import { Link } from 'react-router-dom';
-import logoImage from '/cloud_splash.jpg';
+import logoImage from '/logo.png';
 import '../style/Navbar.css';
 
 function NavbarAnyMetro() {
@@ -13,7 +13,9 @@ function NavbarAnyMetro() {
             <Link to="/modelings/">
                 <Image src={logoImage} roundedCircle className="logo-img" alt="Логотип AnyMetro" />
             </Link>
-            <Navbar.Brand href="/modelings/" className="brand-text">AnyMetro</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/modelings/" className="brand-text">
+                AnyMetro
+            </Navbar.Brand>
             <Nav className="ms-auto">
                 <Link to="" className="btns-log">Зарегистрироваться</Link>
                 <Link to="" className="btns-log">Войти</Link>

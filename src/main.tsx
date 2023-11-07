@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import ModelingsPage from './components/ModelingsPage.tsx';
 import ModelingsDetailsPage from './components/ModelingsDetailsPage.tsx';
 import { useNavigate } from 'react-router-dom';
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter} from "react-router-dom";
 import {HashRouter, Route, Routes} from "react-router-dom";

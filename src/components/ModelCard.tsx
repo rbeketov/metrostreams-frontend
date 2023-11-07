@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import '../style/ModelCard.css';
 
 interface Modelings {
@@ -15,13 +16,13 @@ const ModelingsCard: FC<Modelings> = ({
   modeling_image,
 }) => (
     <div className="custom-card">
-    <a className="card-href" href={`/modelings/${modeling_id}`}>
+    <Link to={`/modelings/${modeling_id}`} className="card-href">
       <img src={`${modeling_image}`} alt={modeling_name} className="custom-card-img" />
       <div className="custom-card-body">
         <p className="custom-card-text text-center">{modeling_name}</p>
         <p className="custom-card-price text-center">{modeling_price} рублей</p>
       </div>
-    </a>
+    </Link>
   </div>
 );
 

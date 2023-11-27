@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 
-const isLocal = process.env.NODE_ENV === 'development';
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
 const base_path = isLocal ? '/' : 'metrostreams-frontend/';
 

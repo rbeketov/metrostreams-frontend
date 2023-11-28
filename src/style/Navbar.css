@@ -1,5 +1,5 @@
-/* Нормальное состояние */
-.color-navbar .logo-img {
+
+.logo-img {
     width: 40px;
     height: 40px;
     margin-right: 10px;
@@ -15,7 +15,10 @@
     font-weight: bold;
 }
 
-.color-navbar .brand-text:hover {
+.navbar-brand.active,
+.navbar-brand:active,
+.navbar-brand:focus,
+.navbar-brand:hover {
     color: white !important;
     font-weight: bold !important;
 }

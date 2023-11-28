@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export interface ModelingImage {
   modeling_id: number;
   modeling_name: string;
@@ -15,43 +17,69 @@ export interface ModelingData {
 const mockModelings: ModelingImage[] = [
   {
     modeling_id: 1,
-    modeling_name: 'Модель 1',
-    modeling_price: '199.00',
-    modeling_image: '/logo.png',
+    modeling_name: 'Станция Щёлковская',
+    modeling_price: '1199.00',
+    modeling_image: '/mock.jpg',
   },
   {
     modeling_id: 2,
-    modeling_name: 'Модель 2',
-    modeling_price: '299.00',
-    modeling_image: '/logo.png',
+    modeling_name: 'Станция Бауманская',
+    modeling_price: '1299.00',
+    modeling_image: '/mock.jpg',
   },
   {
     modeling_id: 3,
-    modeling_name: 'Модель 3',
-    modeling_price: '399.00',
-    modeling_image: '/logo.png',
+    modeling_name: 'Станция Аэропорт',
+    modeling_price: '5399.00',
+    modeling_image: '/mock.jpg',
+  },
+  {
+    modeling_id: 4,
+    modeling_name: 'Станция Митино',
+    modeling_price: '999.00',
+    modeling_image: '/mock.jpg',
+  },
+  {
+    modeling_id: 5,
+    modeling_name: 'Станция Курская',
+    modeling_price: '5399.00',
+    modeling_image: '/mock.jpg',
   },
 ];
 
+
+const MAX_IMAGE_RETRIES = 3;
+
 export const getModelings = async (name = '', minPrice = 0, maxPrice = 99000): Promise<ModelingImage[]> => {
   try {
-    const response = await fetch(`http://localhost:80/api/modelings/?name=${name}&price_under=${minPrice}&price_upper=${maxPrice}`, {
-      method: 'GET',
-    });
+    const response = await axios.get(`http://localhost:80/api/modelings/?name=${name}&price_under=${minPrice}&price_upper=${maxPrice}`);
 
-    if (response.ok) {
-      const data: ModelingData[] = await response.json();
+    if (response.status === 200) {
+      const data: ModelingData[] = response.data;
 
       const modelingImageData: ModelingImage[] = [];
 
       for (const model of data) {
+        let retries = 0;
+        let modelingImage: string | null = null;
+
+        while (retries < MAX_IMAGE_RETRIES) {
+          try {
+            modelingImage = await getImageForModeling(model.modeling_image_url);
+            break;
+          } catch (error) {
+            console.error(`Ошибка во время загрузки изображения для модели ${model.modeling_image_url}: ${error}`);
+            retries++;
+          }
+        }
+
         modelingImageData.push({
           modeling_id: model.modeling_id,
           modeling_name: model.modeling_name,
           modeling_price: model.modeling_price,
-          modeling_image: await getImageForModeling(model.modeling_image_url),
+          modeling_image: modelingImage || '/mock.jpg',
         });
-      }      
+      }
 
       return modelingImageData;
     } else {
@@ -64,30 +92,34 @@ export const getModelings = async (name = '', minPrice = 0, maxPrice = 99000): P
 }
 
 
-
 export async function getImageForModeling(modelingUrl: string): Promise<string> {
-  try {
-    const response = await fetch(`http://localhost:80/bucket-modelings/${modelingUrl}`, {
-      method: 'GET',
-    });
+  for (let retries = 0; retries < MAX_IMAGE_RETRIES; retries++) {
+    try {
+      const response = await axios.get(`http://localhost:80/bucket-modelings/${modelingUrl}`, {
+        responseType: 'arraybuffer',
+      });
 
-    if (response.ok) {
-      const imageBuffer = await response.arrayBuffer();
-      const base64String = arrayBufferToBase64(imageBuffer);
-      return `data:image/jpeg;base64,${base64String}`;
-    } else {
-      return '/logo.png';
+      if (response.status === 200) {
+        const imageBuffer = response.data;
+        const base64String = arrayBufferToBase64(imageBuffer);
+        return `data:image/jpeg;base64,${base64String}`;
+      }
+    } catch (error) {
+      console.error(`Ошибка во время загрузки изображения для модели ${modelingUrl}: ${error}`);
     }
-  } catch (error) {
-    console.error(`Ошибка получения изображения для модели ${modelingUrl}: ${error}`);
-    return '/logo.png';
   }
+  return '/mock.jpg';
 }
 
 
 function arrayBufferToBase64(arrayBuffer: ArrayBuffer): string {
   const binaryArray = new Uint8Array(arrayBuffer);
-  const binaryString = String.fromCharCode(...binaryArray);
-  const base64String = btoa(binaryString);
-  return base64String;
+  const len = binaryArray.length;
+  let binaryString = '';
+
+  for (let i = 0; i < len; i++) {
+    binaryString += String.fromCharCode(binaryArray[i]);
+  }
+
+  return btoa(binaryString);
 }

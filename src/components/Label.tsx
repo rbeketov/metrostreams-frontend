@@ -1,6 +1,7 @@
 import { Container, Row, Col} from 'react-bootstrap';
 
 import backgroundImage from '/cloud_splash.jpg';
+import { Link } from 'react-router-dom';
 
 import '../style/Label.css'
 
@@ -23,9 +24,9 @@ function Label() {
               Предлагаем инновации для городов и метро, обеспечивая комфорт и эффективность. Анализируем пассажиропотоки, прогнозируем спрос и управляем движением с оптимальными стратегиями.
             </p>
             <div className='button-container'>
-              <a href="" className="main-link-button">
+              <Link to="/registration" className="main-link-button">
                 Попробовать AnyMetro
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

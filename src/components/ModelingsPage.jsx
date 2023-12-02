@@ -9,12 +9,14 @@ import {
 } from '../slices/modelingsSlice';
 import { Col, Row, Spinner, Container } from 'react-bootstrap';
 import NavbarAnyMetro from './Navbar';
-import Label from './Label';
+import Header from './Header';
 import InputField from './InputField';
 import ModelingsCard from './ModelCard';
 import FooterAnyMetro from './Footer';
 import { getModelings } from '../modules/get-modelings';
 import '../style/ModelingsPage.css';
+import { addBreadcrumbToChain, removeLastBreadcrumbFromChain } from '../actions/breadcrumbsActions'
+
 
 const filterModelings = (
   data,
@@ -36,6 +38,8 @@ const ModelingsPage = () => {
   const { searchValue, modelings, loading, minPrice, maxPrice } = useSelector(
     (state) => state.modelings
   );
+
+  const breadcrumbs = useSelector((state) => state.breadcrumbs.crumbs);
 
   const handleSearchSubmit = async () => {
     dispatch(setLoading(true));
@@ -69,13 +73,20 @@ const ModelingsPage = () => {
   };
 
   useEffect(() => {
+    if (breadcrumbs.length > 2) {
+      dispatch(removeLastBreadcrumbFromChain())
+    } else if (breadcrumbs.length == 0) {
+      dispatch(addBreadcrumbToChain({ title: 'Главная', url: '/' }));
+      dispatch(addBreadcrumbToChain({ title: 'Модели', url: '/modelings' }));
+    } 
     handleSearchSubmit();
   }, [dispatch, searchValue, minPrice, maxPrice]);
+
 
   return (
     <div>
       <NavbarAnyMetro />
-      <Label />
+      <Header />
       <InputField
         value={searchValue}
         setValue={(value) => dispatch(setSearchValue(value))}

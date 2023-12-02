@@ -1,0 +1,71 @@
+
+.buttonStyle {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 260%;
+    background-color: #0a66c8;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 50%;
+    height: 120%;
+    margin-left: 33%;
+    margin-top: 15%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to right, #023469, rgb(90, 158, 231));
+    border: 2px solid rgb(35, 91, 151);
+  }
+  
+  .buttonStyle:hover {
+    background-color: #084a91;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to right, #022040, #2674c7);
+    border-color: rgb(35, 91, 151);
+  }
+  
+  .hrContainer {
+    background-color: #084a91;
+    height: 1vh;
+
+  }
+
+  .h1Style {
+    height: 40%;
+  }
+
+  .sectionContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 3rem;
+  }
+
+  .bullet-point {
+    height: 70%;
+  }
+  
+  
+  .text-white {
+    margin-bottom: 0!important;
+  }
+    
+  .slogan {
+    margin-bottom: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: underline #0a66c8;
+    margin-bottom: 0.5rem;
+  }
+  
+  .description {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0;
+    font-size: 15px;
+  }
+  

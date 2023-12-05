@@ -4,6 +4,7 @@ import { loginUser } from '../actions/authActions';
 import { Link, useNavigate } from 'react-router-dom';
 
 import NavbarAnyMetro from './Navbar';
+import Header from './Header';
 
 import '../style/AuthorizationPage.css';
 
@@ -47,6 +48,7 @@ const AuthorizationPage = () => {
   return (
     <div>
       <NavbarAnyMetro />
+      <Header/>
       <div className="authorization-container" style={backgroundStyle}>
         <div>
           <div className="custom-form">

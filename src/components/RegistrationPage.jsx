@@ -4,6 +4,7 @@ import { registerUser } from '../actions/registrationActions';
 import { Link, useNavigate } from 'react-router-dom';
 
 import NavbarAnyMetro from './Navbar';
+import Header from './Header';
 
 import '../style/AuthorizationPage.css';
 
@@ -59,6 +60,7 @@ const RegistrationPage = () => {
   return (
     <div>
       <NavbarAnyMetro />
+      <Header/>
       <div className="authorization-container" style={backgroundStyle}>
         <div>
           <div className="custom-form">

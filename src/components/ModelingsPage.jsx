@@ -1,87 +1,56 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  setSearchValue,
-  setModelings,
-  setLoading,
-  setMinPrice,
-  setMaxPrice,
-} from '../slices/modelingsSlice';
+  setModelingAction,
+  setSearchValueAction,
+  setMinPriceAction,
+  setMaxPriceAction,
+} from '../actions/modelingsActions';
 import { Col, Row, Spinner, Container } from 'react-bootstrap';
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
 import InputField from './InputField';
 import ModelingsCard from './ModelCard';
 import FooterAnyMetro from './Footer';
-import { getModelings } from '../modules/get-modelings';
 import '../style/ModelingsPage.css';
-import { addBreadcrumbToChain, removeLastBreadcrumbFromChain } from '../actions/breadcrumbsActions'
+import { getBucket } from '../actions/bucketActions';
 
-
-const filterModelings = (
-  data,
-  searchValue,
-  minPrice,
-  maxPrice,
-) => {
-  const filteredData = data.filter((model) => {
-    const modelNameMatches = model.modeling_name.toLowerCase().includes(searchValue.toLowerCase());
-    const priceInRange = parseFloat(model.modeling_price) >= minPrice && parseFloat(model.modeling_price) <= maxPrice;
-    return modelNameMatches && priceInRange;
-  });
-
-  return filteredData;
-};
 
 const ModelingsPage = () => {
   const dispatch = useDispatch();
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   const { searchValue, modelings, loading, minPrice, maxPrice } = useSelector(
     (state) => state.modelings
   );
 
-  const breadcrumbs = useSelector((state) => state.breadcrumbs.crumbs);
+  const draft_id = useSelector((state) => state.bucket.draft_id);
 
   const handleSearchSubmit = async () => {
-    dispatch(setLoading(true));
-
-    const currMinPrice = Array.isArray(minPrice) ? minPrice[0] : minPrice;
-    const currMaxPrice = Array.isArray(maxPrice) ? maxPrice[0] : maxPrice;
-
-    const data = await getModelings(searchValue, currMinPrice, currMaxPrice);
-
-    if (data[0].modeling_image === '/mock.jpg' && data[0].modeling_name === 'Станция Щёлковская') {
-      const filteredData = filterModelings(data, searchValue, currMinPrice, currMaxPrice);
-      dispatch(setModelings(filteredData));
-    } else {
-      dispatch(setModelings(data));
-    }
-    dispatch(setLoading(false));
+    dispatch(setModelingAction(searchValue, minPrice, maxPrice));
   };
 
   const handleMinSliderChange = (value) => {
-    dispatch(setMinPrice(value));
+    dispatch(setMinPriceAction(value));
     if (value > maxPrice) {
-      dispatch(setMaxPrice(value));
+      dispatch(setMaxPriceAction(value));
     }
   };
 
   const handleMaxSliderChange = (value) => {
-    dispatch(setMaxPrice(value));
+    dispatch(setMaxPriceAction(value));
     if (value < minPrice) {
-      dispatch(setMinPrice(value));
+      dispatch(setMinPriceAction(value));
     }
   };
 
   useEffect(() => {
-    if (breadcrumbs.length > 2) {
-      dispatch(removeLastBreadcrumbFromChain())
-    } else if (breadcrumbs.length == 0) {
-      dispatch(addBreadcrumbToChain({ title: 'Главная', url: '/' }));
-      dispatch(addBreadcrumbToChain({ title: 'Модели', url: '/modelings' }));
-    } 
     handleSearchSubmit();
+    if (isAuthenticated) {  
+      dispatch(getBucket(draft_id));
+    }
   }, [dispatch, searchValue, minPrice, maxPrice]);
-
 
   return (
     <div>
@@ -89,7 +58,7 @@ const ModelingsPage = () => {
       <Header />
       <InputField
         value={searchValue}
-        setValue={(value) => dispatch(setSearchValue(value))}
+        setValue={(value) => dispatch(setSearchValueAction(value))}
         onSubmit={handleSearchSubmit}
         loading={loading}
         placeholder="Введите поисковый запрос"
@@ -125,5 +94,5 @@ const ModelingsPage = () => {
     </div>
   );
 };
-export default ModelingsPage;
 
+export default ModelingsPage;

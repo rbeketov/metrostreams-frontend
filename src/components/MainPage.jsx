@@ -4,6 +4,7 @@ import Label from './Label';
 import { Container, Row, Col} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import Header from './Header';
 import FooterAnyMetro from './Footer';
 import '../style/MainPage.css';
 
@@ -22,6 +23,7 @@ const MainPage = () => {
   return (
     <div>
       <NavbarAnyMetro />
+      <Header/>
       <Label />
       <div className="hrContainer"></div>
       <section style={sectionStyle} className="py-5 text-center sectionContent">

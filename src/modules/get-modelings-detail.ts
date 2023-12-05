@@ -24,7 +24,10 @@ const mockModelingDetails: ModelingsDetailsImage = {
 
 export const getModelingsDetail = async (id: number): Promise<ModelingsDetailsImage> => {
     try {
-      const response = await axios.get(`http://localhost:80/api/modelings/${id}/`);
+      const response = await axios.get(`http://localhost:80/api/modelings/${id}/`,
+      {
+        withCredentials: true,
+      });
   
       if (response.status !== 200) {
         return mockModelingDetails;

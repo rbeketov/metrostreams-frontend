@@ -6,7 +6,6 @@ import FooterAnyMetro from './Footer';
 import Header from './Header';
 import { Link } from 'react-router-dom';
 import { getModelingsDetails } from '../actions/modelingsDetailsActions';
-import { addBreadcrumbToChain } from '../actions/breadcrumbsActions';
 import '../style/ModelingsDetailsPage.css';
 
 const ModelingsDetailsPage = () => {
@@ -18,7 +17,6 @@ const ModelingsDetailsPage = () => {
   useEffect(() => {
     if (id) {
       dispatch(getModelingsDetails(id));
-      dispatch(addBreadcrumbToChain({ title: details?.modeling_name, url: `/modelings/${id}` }));
     }
   }, [id, dispatch, details?.modeling_name]);
 

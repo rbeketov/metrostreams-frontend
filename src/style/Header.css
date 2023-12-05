@@ -11,5 +11,39 @@
 }
 
 .cart-icon-container {
+  position: relative;
+  margin-right: 5.5%;
+}
+
+.cart-icon-container:hover {
   cursor: pointer;
+  transform: scale(1.07)!important;
+}
+
+
+.bucket-style {
+  color: #1571d3;
+}
+
+.bucket-style:hover {
+  color: #0d3f79;
+}
+
+.cart-counter {
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid white;
+  background-color: #1571d3;
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: -17px;
+  bottom: -8px;
 }

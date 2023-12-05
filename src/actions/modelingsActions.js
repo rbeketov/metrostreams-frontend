@@ -1,30 +1,66 @@
-export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE';
-export const SET_MODELINGS = 'SET_MODELINGS';
-export const SET_LOADING = 'SET_LOADING';
-export const SET_MIN_PRICE = 'SET_MIN_PRICE';
-export const SET_MAX_PRICE = 'SET_MAX_PRICE';
+// modelingActions.js
+import {
+  setSearchValue,
+  setModelings,
+  setLoading,
+  setMinPrice,
+  setMaxPrice,
+} from '../slices/modelingsSlice';
 
-export const setSearchValue = (value) => ({
-  type: SET_SEARCH_VALUE,
-  payload: value,
-});
+import { getModelings } from '../modules/get-modelings';
+import { setDraftId } from '../slices/bucketSlice';
 
-export const setModelings = (data) => ({
-  type: SET_MODELINGS,
-  payload: data,
-});
+const filterModelings = (
+  data,
+  searchValue,
+  minPrice,
+  maxPrice,
+) => {
+  const filteredData = data.filter((model) => {
+    const modelNameMatches = model.modeling_name.toLowerCase().includes(searchValue.toLowerCase());
+    const priceInRange = parseFloat(model.modeling_price) >= minPrice && parseFloat(model.modeling_price) <= maxPrice;
+    return modelNameMatches && priceInRange;
+  });
 
-export const setLoading = (status) => ({
-  type: SET_LOADING,
-  payload: status,
-});
+  return filteredData;
+};
 
-export const setMinPrice = (value) => ({
-  type: SET_MIN_PRICE,
-  payload: value,
-});
+export const setModelingAction = (searchValue, minPrice, maxPrice) => async (dispatch, getState) => {
+  try {
+    dispatch(setLoading(true));
 
-export const setMaxPrice = (value) => ({
-  type: SET_MAX_PRICE,
-  payload: value,
-});
+    const response = await getModelings(searchValue, minPrice, maxPrice);
+    const draft_id = response[0];
+    const data = response[1];
+
+    if (data[0].modeling_image === '/mock.jpg' && data[0].modeling_name === 'Станция Щёлковская') {
+      const filteredData = filterModelings(data, searchValue, minPrice, maxPrice);
+      dispatch(setModelings(filteredData));
+    } else {
+      dispatch(setModelings(data));
+    }
+
+    dispatch(setLoading(false));
+
+
+    if (draft_id !== null) {
+      dispatch(setDraftId( draft_id ));
+    }
+
+  } catch (error) {
+    console.error('Error fetching modeling data:', error);
+    dispatch(setLoading(false));
+  }
+};
+
+export const setSearchValueAction = (searchValue) => (dispatch) => {
+  dispatch(setSearchValue(searchValue));
+};
+
+export const setMinPriceAction = (minPrice) => (dispatch) => {
+  dispatch(setMinPrice(minPrice));
+};
+
+export const setMaxPriceAction = (maxPrice) => (dispatch) => {
+  dispatch(setMaxPrice(maxPrice));
+};

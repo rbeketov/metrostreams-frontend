@@ -41,6 +41,7 @@ function NavbarAnyMetro() {
           </Link>
           {isAuthenticated ? (
             <>
+              
               <Link to="/logout" className="btns-log">
                 Выйти
               </Link>
@@ -48,15 +49,18 @@ function NavbarAnyMetro() {
                 <Image src={personIcon} className="logo-img" alt="Иконка пользователя" />
               </div>
               <UserProfileMenuPortal user={user} show={showUserProfileMenu} onClose={handleCloseUserProfileMenu} />
+              
             </>
           ) : (
             <>
+              
               <Link to="/registration" className="btns-log">
                 Зарегистрироваться
               </Link>
               <Link to="/login" className="btns-log">
                 Войти
               </Link>
+              
             </>
           )}
         </Nav>

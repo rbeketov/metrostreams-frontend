@@ -50,12 +50,17 @@ const mockModelings: ModelingImage[] = [
 
 const MAX_IMAGE_RETRIES = 3;
 
-export const getModelings = async (name = '', minPrice = 0, maxPrice = 99000): Promise<ModelingImage[]> => {
+export const getModelings = async (name = '', minPrice = 0, maxPrice = 99000): Promise<[number | null, ModelingImage[]]> => {
   try {
-    const response = await axios.get(`http://localhost:80/api/modelings/?name=${name}&price_under=${minPrice}&price_upper=${maxPrice}`);
+    const response = await axios.get(`http://localhost:80/api/modelings/?name=${name}&price_under=${minPrice}&price_upper=${maxPrice}`,
+    {
+      withCredentials: true,
+    });
 
     if (response.status === 200) {
-      const data: ModelingData[] = response.data;
+      const data: ModelingData[] = response.data.modeling_objects;
+
+      const draft_id = response.data.draft_id;
 
       const modelingImageData: ModelingImage[] = [];
 
@@ -80,14 +85,13 @@ export const getModelings = async (name = '', minPrice = 0, maxPrice = 99000): P
           modeling_image: modelingImage || '/mock.jpg',
         });
       }
-
-      return modelingImageData;
+      return [draft_id, modelingImageData];
     } else {
-      return mockModelings;
+      return [null, mockModelings];
     }
   } catch (error) {
     console.error('Произошла ошибка:', error);
-    return mockModelings;
+    return [null, mockModelings];
   }
 }
 
@@ -97,6 +101,7 @@ export async function getImageForModeling(modelingUrl: string): Promise<string> 
     try {
       const response = await axios.get(`http://localhost:80/bucket-modelings/${modelingUrl}`, {
         responseType: 'arraybuffer',
+        withCredentials: true,
       });
 
       if (response.status === 200) {

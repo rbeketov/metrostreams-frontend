@@ -11,19 +11,19 @@ const modelingsSlice = createSlice({
   },
   reducers: {
     setSearchValue: (state, action) => {
-      state.searchValue = action.payload;
+      return { ...state, searchValue: action.payload };
     },
     setModelings: (state, action) => {
-      state.modelings = action.payload;
+      return { ...state, modelings: action.payload };
     },
     setLoading: (state, action) => {
-      state.loading = action.payload;
+      return { ...state, loading: action.payload };
     },
     setMinPrice: (state, action) => {
-      state.minPrice = action.payload;
+      return { ...state, minPrice: action.payload };
     },
     setMaxPrice: (state, action) => {
-      state.maxPrice = action.payload;
+      return { ...state, maxPrice: action.payload };
     },
   },
 });

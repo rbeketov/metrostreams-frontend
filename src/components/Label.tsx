@@ -12,6 +12,7 @@ function Label() {
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
+    height: '86.5vh',
   };
 
   return (

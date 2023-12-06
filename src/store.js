@@ -4,6 +4,7 @@ import modelingsReducer from './slices/modelingsSlice';
 import modelingsDetailsReducer from './slices/modelingsDetailsSlice';
 import authReducer from './slices/authSlice';
 import bucketReducer from './slices/bucketSlice';
+import applicationReducer from './slices/applicationSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     modelingsDetails: modelingsDetailsReducer,
     auth: authReducer,
     bucket: bucketReducer,
+    applications: applicationReducer,
   },
     middleware: [thunk],
 });

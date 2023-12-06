@@ -1,7 +1,8 @@
-import { FC } from 'react';
+
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'; // Подключаем useSelector из react-redux
+import { useSelector, useDispatch } from 'react-redux';
 import '../style/ModelCard.css';
+import { addModelingToBucket } from '../actions/bucketActions';
 
 
 const ModelingsCard = ({
@@ -11,10 +12,16 @@ const ModelingsCard = ({
   modeling_image,
 }) => {
 
+  const dispatch = useDispatch();
+
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
 
   const isUserAuthorized = isAuthenticated && user && user.role === 'USR';
+  
+  const handleAddToBucket = () => {
+    dispatch(addModelingToBucket(modeling_id));
+  };
 
   return (
     <div className="custom-card">
@@ -29,7 +36,9 @@ const ModelingsCard = ({
   
       {isUserAuthorized && (
         <div className="add-to-cart-container">
-          <a className="add-to-cart-button">В корзину</a>
+          <button className="add-to-cart-button" onClick={handleAddToBucket}>
+            В корзину
+          </button>
         </div>
       )}
     </div>

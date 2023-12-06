@@ -47,3 +47,13 @@
   right: -17px;
   bottom: -8px;
 }
+
+
+cart-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cart-link:hover {
+  text-decoration: none;
+}

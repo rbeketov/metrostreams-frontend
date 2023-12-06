@@ -43,12 +43,12 @@ export const setModelingAction = (searchValue, minPrice, maxPrice) => async (dis
     dispatch(setLoading(false));
 
 
-    if (draft_id !== null) {
+    if (draft_id) {
       dispatch(setDraftId( draft_id ));
     }
 
   } catch (error) {
-    console.error('Error fetching modeling data:', error);
+    console.error('Ошибка получения объектов моделирования:', error);
     dispatch(setLoading(false));
   }
 };

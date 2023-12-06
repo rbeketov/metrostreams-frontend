@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../actions/registrationActions';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
@@ -44,8 +44,7 @@ const RegistrationPage = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleRegister = () => {
-    // Создаем объект с данными для регистрации
+  const handleRegister = async () => {
     const userData = {
       first_name: firstName,
       second_name: secondName,
@@ -54,13 +53,17 @@ const RegistrationPage = () => {
       password,
     };
 
-    dispatch(registerUser(userData));
+    await dispatch(registerUser(userData));
+  
+    if (isAuthenticated) {
+      navigate('/modelings');
+    };
   };
 
   return (
     <div>
       <NavbarAnyMetro />
-      <Header/>
+      <Header showCart={false} />
       <div className="authorization-container" style={backgroundStyle}>
         <div>
           <div className="custom-form">

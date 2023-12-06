@@ -47,15 +47,19 @@ const ModelingsPage = () => {
 
   useEffect(() => {
     handleSearchSubmit();
-    if (isAuthenticated) {  
+  }, [dispatch, searchValue, minPrice, maxPrice]);
+
+  useEffect(() => {
+    if (isAuthenticated && draft_id) {  
       dispatch(getBucket(draft_id));
     }
-  }, [dispatch, searchValue, minPrice, maxPrice]);
+  }, [dispatch, isAuthenticated, draft_id]);
+
 
   return (
     <div>
       <NavbarAnyMetro />
-      <Header />
+      <Header showCart={true} />
       <InputField
         value={searchValue}
         setValue={(value) => dispatch(setSearchValueAction(value))}

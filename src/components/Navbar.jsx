@@ -41,7 +41,6 @@ function NavbarAnyMetro() {
           </Link>
           {isAuthenticated ? (
             <>
-              
               <Link to="/logout" className="btns-log">
                 Выйти
               </Link>

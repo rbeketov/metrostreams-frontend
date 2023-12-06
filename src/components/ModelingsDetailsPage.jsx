@@ -23,7 +23,7 @@ const ModelingsDetailsPage = () => {
   return (
     <div>
       <NavbarAnyMetro />
-      <Header />
+      <Header showCart={true} />
       <div className="model-card">
         <div className="model-card-image">
           <img src={`${details?.modeling_image}`} alt={details?.modeling_name} className="model-detail-card" />

@@ -12,13 +12,9 @@
 
 .cart-icon-container {
   position: relative;
-  margin-right: 5.5%;
+  margin-right: 75px;
 }
 
-.cart-icon-container:hover {
-  cursor: pointer;
-  transform: scale(1.07)!important;
-}
 
 
 .bucket-style {
@@ -27,6 +23,17 @@
 
 .bucket-style:hover {
   color: #0d3f79;
+  transform: scale(1.07);
+  cursor: pointer;
+}
+
+.inactive-cart {
+  color: grey;
+}
+
+.inactive-cart:hover {
+  color: grey;
+  transform: scale(1.00);
 }
 
 .cart-counter {
@@ -56,4 +63,24 @@ cart-link {
 
 .cart-link:hover {
   text-decoration: none;
+}
+
+.applications-button{
+  color: #ffffff!important;
+  text-decoration: none!important;
+  background-color: #1571d3;
+  padding: 5px 12px;
+  font-size: 17px;
+  font-weight : inherit;
+  margin-right: 20px;
+  border-radius: 13px;
+}
+
+.applications-button:hover {
+  background-color: #0e437c;
+  text-decoration: none!important;
+  border-radius: 13px;
+  color: #ffffff;
+  transform: translateY(-0.5px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }

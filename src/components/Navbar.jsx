@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch  } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -9,15 +9,19 @@ import logoImage from '/logo.png';
 import '../style/Navbar.css';
 import personIcon from '/logo-user.png';
 
+// import { loginUser } from '../actions/authActions';
+
 import UserProfileMenuPortal from './UserProfileMenuPortal';
 
 
 function NavbarAnyMetro() {
+
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
 
   const [showUserProfileMenu, setShowUserProfileMenu] = React.useState(false);
 
+  // const dispatch = useDispatch();
   const handleUserProfileClick = () => {
     setShowUserProfileMenu(!showUserProfileMenu);
   };
@@ -25,6 +29,13 @@ function NavbarAnyMetro() {
   const handleCloseUserProfileMenu = () => {
     setShowUserProfileMenu(false);
   };
+
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     dispatch(loginUser(null, null));
+  //   }
+  // }, [isAuthenticated, dispatch]);
+  
 
   return (
     <Navbar className="color-navbar" expand="lg">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../actions/authActions';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
@@ -51,7 +51,7 @@ const AuthorizationPage = () => {
   return (
     <div>
       <NavbarAnyMetro />
-      <Header showCart={false} />
+      <Header showCart={false} showApp={false} />
       <div className="authorization-container" style={backgroundStyle}>
         <div>
           <div className="custom-form">

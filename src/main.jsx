@@ -12,7 +12,8 @@ import AuthorizationPage from './components/AuthorizationPage.jsx';
 import Logout from './components/Logout.jsx';
 import RegistrationPage from './components/RegistrationPage.jsx';
 import CartPage from './components/CartPage.jsx';
-
+import ApplicationsPage from './components/ApplicationsPage.jsx'
+import AppDetail from './components/AppDetail.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import './index.css';
@@ -35,6 +36,8 @@ ReactDOM.render(
         <Route path="logout/" element={<Logout />}/>
         <Route path="registration/" element={<RegistrationPage />}/>
         <Route path="modelings/cart/" element={<CartPage />}/>
+        <Route path="modelings/applications/" element={<ApplicationsPage />}/>
+        <Route path="/modelings/applications/detail/:id" element={<AppDetail />}/>
       </Routes>
       <ToastContainer position="top-right" autoClose={1000} />
     </RouterComponent>

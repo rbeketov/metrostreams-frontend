@@ -92,10 +92,13 @@ export const setParametersBucket = (people_per_minute, time_interval) => async (
 
 export const sendBucket = () => async (dispatch, getState) => {
     try {
-      const { draft_id } = getState().bucket;
-  
+      const { draft_id, people_per_minute, time_interval } = getState().bucket;
+      if (people_per_minute == null || time_interval == null) {
+        toast.error('Нельзя сформировать заявку без обязательных полей');
+        return;
+      }
       const response = await axios.put(`http://localhost:80/api/applications/${draft_id}/user_set_status/`,
-        {status: 'WORK' },
+        {status: 'WORK', people_per_minute, time_interval },
         {withCredentials: true},
       );
   

@@ -59,7 +59,7 @@ const ModelingsPage = () => {
   return (
     <div>
       <NavbarAnyMetro />
-      <Header showCart={true} />
+      <Header showCart={true} showApp={true}/>
       <InputField
         value={searchValue}
         setValue={(value) => dispatch(setSearchValueAction(value))}

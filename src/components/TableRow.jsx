@@ -1,27 +1,37 @@
 // TableRow.jsx
-
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../style/TableRow.css';
 
 const TableRow = ({ application }) => {
   const statusAliases = {
-    'WORK': 'Сформирована',
-    'COMP': 'Выполнена',
-    'CANC': 'Отклонена',
+    WORK: 'Сформирована',
+    COMP: 'Выполнена',
+    CANC: 'Отклонена',
   };
 
-  if (application.status_application === 'DRFT') {
-    return null;
-  }
+  const [isListOpen, setListOpen] = useState(false);
+  const [buttonText, setButtonText] = useState('Подробнее');
+
+  const toggleList = () => {
+    setListOpen(!isListOpen);
+    setButtonText(isListOpen ? 'Подробнее' : 'Скрыть');
+  };
 
   return (
     <tr>
       <td>{application.application_id}</td>
-      <td>{application.date_application_create}</td>
       <td>{application.date_application_accept}</td>
       <td>{application.date_application_complete}</td>
-      <td>{statusAliases[application.status_application]}</td>
-      <td>{application.moderator_second_name} {application.moderator_first_name}</td>
-      <td>{application.moderator_email}</td>
+      <td>{application.people_per_minute}:{application.time_interval}</td>
+      <td className={`status-cell ${application.status_application.toLowerCase()}`}>
+        {statusAliases[application.status_application]}
+      </td>
+      <td>
+        <Link to={`/modelings/applications/detail/${application.application_id}`} className='details-link'>
+          {buttonText}
+        </Link>
+      </td>
     </tr>
   );
 };

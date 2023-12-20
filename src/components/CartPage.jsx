@@ -3,10 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getApplications } from '../actions/applicationActions';
-import TableRow from './TableRow';
-import { useCustomNavigate } from './AuthorizationPage';
+
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
+
+
+
+import '../style/CartPage.css'
 
 import { deleteModelingFromBucket, setParametersBucket, sendBucket } from '../actions/bucketActions'
 
@@ -33,48 +36,55 @@ const DraftApplicationTable = ({ bucket, user_id }) => {
     };
   
     return (
-      <div>
-        <h2>Черновая заявка</h2>
+      <div className='draft-container'>
+        <div className='draft-title'>Черновая заявка</div>
+        <div className='parameters-modeling-box'>
+          <div className='rows-param'>
+            <div className='param-output'>
+                <strong>Людей в минуту:</strong>
+                {bucket.people_per_minute !== null ? (
+                    <span className="set">{bucket.people_per_minute}</span>
+                ) : (
+                    <span className="not-set">Значение не установлено</span>
+                )}
+            </div>
+            
+            <div className='param-output'>
+                <strong>Интервал времени:</strong>
+                {bucket.time_interval !== null ? (
+                    <span className="set">{bucket.time_interval}</span>
+                ) : (
+                    <span className="not-set">Значение не установлено</span>
+                )}
+            </div>
+          </div>
+          <div className='rows-param'>
+            <div className='input-form'>
+              <label htmlFor="peoplePerMinute">Людей в минуту:</label>
+                <input
+                  type="number"
+                  id="peoplePerMinute"
+                  value={peoplePerMinute}
+                  onChange={(e) => setPeoplePerMinute(e.target.value)}
+                />
+            </div>
+            <div className='input-form'>
+              <label htmlFor="timeInterval">Интервал времени:</label>
+              <input
+                type="number"
+                id="timeInterval"
+                value={timeInterval}
+                onChange={(e) => setTimeInterval(e.target.value)}
+              />
+            </div>
+            <button className='accept-draft-button' onClick={handleApplyParameters}>Применить параметры</button>
+          </div>
+        </div>
+
+
         
-        {/* Добавленный блок для отображения параметров моделирования */}
-        <div>
-          <table>
-            <tbody>
-              <tr>
-                <td>Людей в минуту:</td>
-                <td>{bucket.people_per_minute}</td>
-              </tr>
-              <tr>
-                <td>Интервал времени:</td>
-                <td>{bucket.time_interval}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  
-        {/* Форма для изменения параметров */}
-        <div>
-          <label htmlFor="peoplePerMinute">Людей в минуту:</label>
-          <input
-            type="number"
-            id="peoplePerMinute"
-            value={peoplePerMinute}
-            onChange={(e) => setPeoplePerMinute(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="timeInterval">Интервал времени:</label>
-          <input
-            type="number"
-            id="timeInterval"
-            value={timeInterval}
-            onChange={(e) => setTimeInterval(e.target.value)}
-          />
-        </div>
-        <button onClick={handleApplyParameters}>Применить параметры</button>
-        
-        {/* Таблица услуг */}
-        <table>
+
+        <table className="table-bordered">
           <thead>
             <tr>
               <th>Название</th>
@@ -88,80 +98,32 @@ const DraftApplicationTable = ({ bucket, user_id }) => {
                 <td>{service.modeling_name}</td>
                 <td>{service.modeling_price}</td>
                 <td>
-                  <button onClick={() => handleRemoveModeling(service.modeling_id)}>Удалить</button>
+                  <button className='del-draft-button' onClick={() => handleRemoveModeling(service.modeling_id)}>Удалить</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <button onClick={handleSendBucket}>Сформировать заявку</button>
+  
+        <button className='accept-draft-button' onClick={handleSendBucket}>Сформировать заявку</button>
+        
       </div>
     );
   };
-  
-
 
 const CartPage = () => {
-  const dispatch = useDispatch();
-  const navigate = useCustomNavigate();
   const user = useSelector((state) => state.auth.user);
-
-  useEffect(() => {
-    if (user) {
-      dispatch(getApplications(user.user_id));
-    } else {
-      navigate('/modelings');
-    }
-  }, [dispatch, user]);
-
-  
   const bucket = useSelector((state) => state.bucket);
-  const applications = useSelector((state) => state.applications.applications);
-
-
-  console.log(bucket.modelingCount);
-  console.log(bucket.bucketItems);
   return (
     <div>
       <NavbarAnyMetro />
-      <Header showCart={false} />
-      <div>
-        
+      <Header showCart={false} showApp={true}/>
+      <div className="applications-container">
         {bucket.draft_id && bucket.modelingCount > 0 && (
           <DraftApplicationTable
             bucket={bucket}
             user_id={user.user_id}
           />
-        )}
-
-        <h1>Заявки</h1>
-        {(bucket.draft_id && applications.length > 1) || (!bucket.draft_id && applications.length > 0) ? (
-          <table>
-
-            <thead>
-              <tr>
-                <th>№ заявки</th>
-                <th>Дата, время создания</th>
-                <th>Дата, время формирования</th>
-                <th>Дата, время расчёта</th>
-                <th>Статус</th>
-                <th>Модератор</th>
-                <th>Контакт</th>
-                <th> </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {applications.map((application) => (
-                <TableRow
-                  key={application.application_id}
-                  application={application}
-                />
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>Пока что у вас нет заявок</p>
         )}
       </div>
     </div>

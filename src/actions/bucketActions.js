@@ -37,7 +37,7 @@ export const addModelingToBucket = (modeling_id) => async (dispatch, getState) =
     
     if (response.status === 201) {
       dispatch(setDraftId(response.data.draft_id));
-      dispatch(getBucket(response.data.draft_id));
+      // dispatch(getBucket(response.data.draft_id));
       toast.success('Услуга добавлена в корзину');
     }
 
@@ -89,6 +89,24 @@ export const setParametersBucket = (people_per_minute, time_interval) => async (
       console.error('Ошибка во время установки параметров черновика:', error);
     }
   };
+
+
+  export const delBucket = () => async (dispatch, getState) => {
+    try {
+      const { draft_id } = getState().bucket;
+
+      if (draft_id) {
+        await axios.delete(`http://localhost:80/api/applications/${draft_id}/user_delete/`, {
+          withCredentials: true,
+        });
+      }
+      dispatch(resetBucket());
+  
+    } catch (error) {
+      console.error('Ошибка во время формирования заявки:', error);
+    }
+  };
+
 
 export const sendBucket = () => async (dispatch, getState) => {
     try {

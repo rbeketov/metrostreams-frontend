@@ -25,7 +25,7 @@ const ModelingsPage = () => {
     (state) => state.modelings
   );
 
-  const draft_id = useSelector((state) => state.bucket.draft_id);
+  // const draft_id = useSelector((state) => state.bucket.draft_id);
 
   const handleSearchSubmit = async () => {
     dispatch(setModelingAction(searchValue, minPrice, maxPrice));
@@ -49,11 +49,11 @@ const ModelingsPage = () => {
     handleSearchSubmit();
   }, [dispatch, searchValue, minPrice, maxPrice]);
 
-  useEffect(() => {
-    if (isAuthenticated && draft_id) {  
-      dispatch(getBucket(draft_id));
-    }
-  }, [dispatch, isAuthenticated, draft_id]);
+  // useEffect(() => {
+  //   if (isAuthenticated && draft_id) {  
+  //     dispatch(getBucket(draft_id));
+  //   }
+  // }, [dispatch, isAuthenticated, draft_id]);
 
 
   return (

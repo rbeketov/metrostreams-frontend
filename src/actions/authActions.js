@@ -29,7 +29,7 @@ export const logoutUser = () => async (dispatch, getState) => {
     const draft_id = bucket.draft_id;
 
     if (draft_id) {
-      await axios.delete(`http://localhost:80/api/applications/${draft_id}/user_delete`, {
+      await axios.delete(`http://localhost:80/api/applications/${draft_id}/user_delete/`, {
         withCredentials: true,
       });
     }

@@ -41,7 +41,7 @@ interface Application {
 
 export async function getApplicationById(pk: string): Promise<Application | null> {
   try {
-    const response = await axios.get<Application>(`http://localhost:80/api/applications/${pk}`, {
+    const response = await axios.get<Application>(`http://localhost:80/api/applications/${pk}/`, {
       withCredentials: true,
     });
 

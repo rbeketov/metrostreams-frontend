@@ -30,13 +30,6 @@ function NavbarAnyMetro() {
     setShowUserProfileMenu(false);
   };
 
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     dispatch(loginUser(null, null));
-  //   }
-  // }, [isAuthenticated, dispatch]);
-  
-
   return (
     <Navbar className="color-navbar" expand="lg">
       <Container>
@@ -52,14 +45,19 @@ function NavbarAnyMetro() {
           </Link>
           {isAuthenticated ? (
             <>
-              <Link to="/logout" className="btns-log">
-                Выйти
-              </Link>
+              <div className='user-name'>
+               {user?.first_name}
+              </div>
+              <div className='user-name'>
+               {user?.second_name}
+              </div>
               <div className="user-icon" onClick={handleUserProfileClick}>
                 <Image src={personIcon} className="logo-img" alt="Иконка пользователя" />
               </div>
+              <Link to="/logout" className="btns-log">
+                Выйти
+              </Link>
               <UserProfileMenuPortal user={user} show={showUserProfileMenu} onClose={handleCloseUserProfileMenu} />
-              
             </>
           ) : (
             <>

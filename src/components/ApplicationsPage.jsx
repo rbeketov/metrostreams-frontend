@@ -4,9 +4,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getApplications } from '../actions/applicationActions';
 import TableRow from './TableRow';
-import { useCustomNavigate } from './AuthorizationPage';
+import { useCustomNavigate } from '../modules/redirect'
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
+import { Link } from 'react-router-dom';
 
 const SHORT_POLLING_INTERVAL = 5000
 
@@ -48,7 +49,7 @@ const ApplicationsPage = () => {
   return (
     <div>
       <NavbarAnyMetro />
-      <Header showCart={true} showApp={false} />
+      <Header showCart={false} showApp={false} />
       <div className="applications-container">
         <div className='applications-title'>Заявки</div>
         {(bucket.draft_id && applications.length > 1) || (!bucket.draft_id && applications.length > 0) ? (
@@ -58,18 +59,18 @@ const ApplicationsPage = () => {
                 <th>№ заявки</th>
                 <th>Дата, время формирования</th>
                 <th>Дата, время расчёта</th>
+                <th>Дата, время завершения</th>
                 <th>Параметры (л/м:интервал)</th>
                 <th>Статус</th>
-                <th></th>
               </tr>
             </thead>
 
             <tbody>
               {applications.map((application) => (
-                <TableRow
-                  key={application.application_id}
-                  application={application}
-                />
+                  <TableRow
+                    key={application.application_id}
+                    application={application}
+                  />
               ))}
             </tbody>
           </table>

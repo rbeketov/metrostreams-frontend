@@ -33,7 +33,7 @@ const ResultsPage = () => {
   return (
     <div>
         <NavbarAnyMetro />
-        <Header showCart={true} showApp={true} />
+        <Header showCart={false} showApp={true} />
         <div className="applications-container">
             <div className='applications-title'> Заявка № {id}</div>
             {loadingResults ? (

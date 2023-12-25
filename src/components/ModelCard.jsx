@@ -5,6 +5,7 @@ import '../style/ModelCard.css';
 import { addModelingToBucket } from '../actions/bucketActions';
 
 
+
 const ModelingsCard = ({
   modeling_id,
   modeling_name,

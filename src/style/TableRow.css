@@ -36,3 +36,26 @@
     background-color: #11703d;
     margin-bottom: 5px!important;
 }
+
+
+/* .details-link {
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  border-collapse: collapse;
+  color: inherit;
+} */
+
+.table-row:hover {
+  background-color: #aae8f17f;
+  cursor: pointer;
+}
+
+/* .table-row tr {
+  display: block;
+  padding: 10px;
+  border: 1px solid #0a5baf;
+  color: #0a5baf;  
+} */
+
+

@@ -55,7 +55,21 @@
     color: #0a5baf;
     margin-top: 3px;
   }
+
+  .input-form label {
+    margin-right: 5px;
+  }
   
+  .input-form input[type="number"]::-webkit-inner-spin-button,
+  .input-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .input-form input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
 
 
   .table-bordered {
@@ -90,7 +104,7 @@
   background-color: #7e111d;
 }
 
-  .accept-draft-button {
+.accept-draft-button {
     background-color: #139c53;
     margin-bottom: 5px;
 }
@@ -134,4 +148,13 @@
     color: #0a5baf;
     text-align: center;
     margin-top: 0.5%;
+ }
+
+ .accept-parameters-button {
+  margin-top: -1px;
+ }
+
+ .main-draft-button {
+  margin-top: 20px;
+  margin-right: 10px!important;
  }

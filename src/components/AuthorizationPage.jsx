@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../actions/authActions';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { useCustomNavigate } from '../modules/redirect'
 
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
@@ -10,15 +12,7 @@ import '../style/AuthorizationPage.css';
 
 import backgroundImage from '/login-background.jpg';
 
-export const useCustomNavigate = () => {
-  const navigate = useNavigate();
 
-  const customNavigate = (url) => {
-    navigate(url);
-  };
-
-  return customNavigate;
-};
 
 const AuthorizationPage = () => {
   const backgroundStyle = {

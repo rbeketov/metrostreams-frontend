@@ -1,8 +1,13 @@
 // redirect.ts
-import { NavigateFunction } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const createRedirect = (navigate: NavigateFunction) => (url: string) => {
-  navigate(url);
+export const useCustomNavigate = () => {
+  const navigate = useNavigate();
+
+  const customNavigate = (url: string) => {
+    navigate(url);
+  };
+
+  return customNavigate;
 };
 
-export default createRedirect;

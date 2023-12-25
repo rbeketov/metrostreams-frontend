@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getApplications } from '../actions/applicationActions';
+
+import { useCustomNavigate } from '../modules/redirect'
 
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
@@ -11,12 +12,14 @@ import Header from './Header';
 
 import '../style/CartPage.css'
 
-import { deleteModelingFromBucket, setParametersBucket, sendBucket } from '../actions/bucketActions'
+import { getBucket, deleteModelingFromBucket, setParametersBucket, sendBucket, delBucket } from '../actions/bucketActions'
 
 
-const DraftApplicationTable = ({ bucket, user_id }) => {
-    const dispatch = useDispatch();
-    
+const DraftApplicationTable = ({ bucket }) => {  
+  const navigate = useCustomNavigate();
+
+  const dispatch = useDispatch();
+
     const [peoplePerMinute, setPeoplePerMinute] = useState(bucket.people_per_minute || '');
     const [timeInterval, setTimeInterval] = useState(bucket.time_interval || '');
   
@@ -32,7 +35,12 @@ const DraftApplicationTable = ({ bucket, user_id }) => {
 
     const handleSendBucket = async () => {
         await dispatch(sendBucket());
-        await dispatch(getApplications(user_id));
+        navigate('/modelings');
+    };
+
+    const handleDelBucket = async () => {
+      await dispatch(delBucket());
+      navigate('/modelings');
     };
   
     return (
@@ -77,13 +85,9 @@ const DraftApplicationTable = ({ bucket, user_id }) => {
                 onChange={(e) => setTimeInterval(e.target.value)}
               />
             </div>
-            <button className='accept-draft-button' onClick={handleApplyParameters}>Применить параметры</button>
+            <button className='accept-draft-button accept-parameters-button' onClick={handleApplyParameters}>Применить параметры</button>
           </div>
         </div>
-
-
-        
-
         <table className="table-bordered">
           <thead>
             <tr>
@@ -104,9 +108,11 @@ const DraftApplicationTable = ({ bucket, user_id }) => {
             ))}
           </tbody>
         </table>
-  
-        <button className='accept-draft-button' onClick={handleSendBucket}>Сформировать заявку</button>
         
+        <div className="buttons-container">
+          <button className='del-draft-button main-draft-button' onClick={handleDelBucket}>Удалить заявку</button>
+          <button className='accept-draft-button main-draft-button' onClick={handleSendBucket}>Сформировать заявку</button>
+        </div>
       </div>
     );
   };
@@ -114,15 +120,27 @@ const DraftApplicationTable = ({ bucket, user_id }) => {
 const CartPage = () => {
   const user = useSelector((state) => state.auth.user);
   const bucket = useSelector((state) => state.bucket);
+
+  const dispatch = useDispatch();
+
+  const navigate = useCustomNavigate();
+
+  useEffect(() => {
+    if (user && user.role === 'USR') {
+      dispatch(getBucket(bucket.draft_id));
+    } else {
+      navigate('/modelings');
+    }
+  }, [dispatch]);
+
   return (
     <div>
       <NavbarAnyMetro />
       <Header showCart={false} showApp={true}/>
       <div className="applications-container">
-        {bucket.draft_id && bucket.modelingCount > 0 && (
+        {bucket.draft_id !== null && (
           <DraftApplicationTable
             bucket={bucket}
-            user_id={user.user_id}
           />
         )}
       </div>

@@ -15,7 +15,7 @@ const Breadcrumbs = () => {
     login: "Войти",
     cart: "Мои заявки",
     applications: "Заявки",
-    detail: "Детали",
+    edit: 'Редактирование'
   };
 
   const isDetailView = paths.length === 2 && paths[0] === "modelings" && /^\d+$/.test(paths[1]);

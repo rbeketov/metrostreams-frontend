@@ -7,7 +7,10 @@ import TableRow from './TableRow';
 import { useCustomNavigate } from '../modules/redirect'
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
-import { Link } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
+import InputFieldApplications from './InputFieldApplications';
+
+import { setSearchValueAction, setMaxDateAction, setMinDateAction, setSearchStatusAction } from '../actions/applicationActions'
 
 const SHORT_POLLING_INTERVAL = 5000
 
@@ -19,20 +22,28 @@ const ApplicationsPage = () => {
   const navigate = useCustomNavigate();
   const user = useSelector((state) => state.auth.user);
 
+  const applications = useSelector((state) => state.applications.applications);
+
+  const { minDate, maxDate, status, nameUser } = useSelector(
+    (state) => state.applications
+  );
+
+  const isModerator = (user && user.role === 'MOD') ? true : false;
+
   const handleGetApplications = async () => {
     if (user) {
-      await dispatch(getApplications(user.user_id));
+      await dispatch(getApplications());
     }
   };
   useEffect(() => {
     handleGetApplications();
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
       try {
         if (user) {
-          await dispatch(getApplications(user.user_id));
+          await dispatch(getApplications());
         } else {
           navigate('/modelings');
         }
@@ -41,18 +52,29 @@ const ApplicationsPage = () => {
       }
     }, SHORT_POLLING_INTERVAL);
     return () => clearInterval(intervalId);
-  }, [dispatch, user, navigate]);
-
-  const bucket = useSelector((state) => state.bucket);
-  const applications = useSelector((state) => state.applications.applications);
+  }, []);
 
   return (
     <div>
       <NavbarAnyMetro />
       <Header showCart={false} showApp={false} />
+      { isModerator && (
+          <InputFieldApplications
+            value={nameUser}
+            setValue={(value) => dispatch(setSearchValueAction(value))}
+            placeholder="Введите имя пользователя"
+            status={status}
+            setStatus={(value) => dispatch(setSearchStatusAction(value))}
+            minDate={minDate}
+            maxDate={maxDate}
+            setMinDate={(value) => dispatch(setMinDateAction(value))}
+            setMaxDate={(value) => dispatch(setMaxDateAction(value))}
+          />
+        )
+      }
       <div className="applications-container">
         <div className='applications-title'>Заявки</div>
-        {(bucket.draft_id && applications.length > 1) || (!bucket.draft_id && applications.length > 0) ? (
+        {applications.length > 0 ? (
           <table className='table-applications'>
             <thead>
               <tr>
@@ -61,6 +83,9 @@ const ApplicationsPage = () => {
                 <th>Дата, время расчёта</th>
                 <th>Дата, время завершения</th>
                 <th>Параметры (л/м:интервал)</th>
+                {isModerator && (
+                  <th>Пользователь</th>  
+                )}
                 <th>Статус</th>
               </tr>
             </thead>

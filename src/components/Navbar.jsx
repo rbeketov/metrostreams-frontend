@@ -14,12 +14,14 @@ import personIcon from '/logo-user.png';
 import UserProfileMenuPortal from './UserProfileMenuPortal';
 
 
-function NavbarAnyMetro() {
+function NavbarAnyMetro({ showConstructor = false }) {
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
 
   const [showUserProfileMenu, setShowUserProfileMenu] = React.useState(false);
+
+  const isModerator = (user && user.role === 'MOD') ? true : false;
 
   // const dispatch = useDispatch();
   const handleUserProfileClick = () => {
@@ -40,6 +42,11 @@ function NavbarAnyMetro() {
           AnyMetro
         </Navbar.Brand>
         <Nav className="ms-auto">
+          {isModerator && showConstructor && (
+            <Link to="/modelings/edit/" className="btns-log">
+              Редактирование видов моделирования
+            </Link>
+          )}
           <Link to="/modelings" className="btns-log">
             Модели
           </Link>

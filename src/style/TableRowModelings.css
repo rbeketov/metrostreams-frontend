@@ -1,0 +1,78 @@
+/* TableRowModelings.css */
+
+.status-cell {
+    font-weight: bold;
+  }
+  
+  .status-cell.work {
+    background-color: rgba(0, 255, 30, 0.5);
+  }
+  
+  .status-cell.with {
+    background-color: rgba(252, 228, 4, 0.5);
+  }
+  
+  .modeling-list {
+    margin-top: 10px;
+  }
+.result-button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    padding: 8px;
+    margin-top: 1%;
+    cursor: pointer;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    background-color: #139c53;
+    margin-bottom: 5px!important;
+    text-decoration: none!important;
+}
+
+.result-button:hover {
+    background-color: #11703d;
+    margin-bottom: 5px!important;
+}
+
+
+.table-row:hover {
+  background-color: #aae8f17f;
+  cursor: pointer;
+}
+
+
+.form-button {
+    color: #ffffff;
+    padding: 5px 12px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+.withdraw-button {
+    background-color: #12954f;
+}
+
+.withdraw-button:hover {
+    background-color: #0e6b3a;
+    cursor: pointer;
+}
+
+.recover-button {
+    background-color: #78a315;
+}
+
+.recover-button:hover {
+    cursor: pointer;
+    background-color: #56750d;
+}
+
+.delete-button {
+    background-color: #a32d15;
+}
+
+.delete-button:hover {
+    cursor: pointer;
+    background-color: #6f1d0d;
+}

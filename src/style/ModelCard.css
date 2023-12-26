@@ -9,6 +9,10 @@
     width: 27vw;
     height: 27vw;
   }
+
+  .inactiv {
+    background-color: #4f6b773e!important;
+  }
   
   .custom-card-img {
     width: 100%;
@@ -16,7 +20,15 @@
     margin: 0 auto;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+  }
 
+  .inactiv-img {
+    opacity: 0.5;
+    width: 100%;
+    height: 80%;
+    margin: 0 auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
   
   .custom-card a {

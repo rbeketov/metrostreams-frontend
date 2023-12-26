@@ -13,6 +13,7 @@ import Logout from './components/Logout.jsx';
 import RegistrationPage from './components/RegistrationPage.jsx';
 import CartPage from './components/CartPage.jsx';
 import ApplicationsPage from './components/ApplicationsPage.jsx'
+import ModelingsEditPage from './components/ModelingsEditPage.jsx';
 import AppDetail from './components/AppDetail.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
@@ -31,13 +32,15 @@ ReactDOM.render(
       <Routes>
         <Route path={base_path} element={<MainPage />}/>
         <Route path="modelings/" element={<ModelingsPage />}/>
+        <Route path="modelings/edit/" element={<ModelingsEditPage />}/>
+        {/* <Route path="modelings/edit/:id" element={<ConstructorPage />}/> */}
         <Route path="modelings/:id/" element={<ModelingsDetailsPage />} />
         <Route path="login/" element={<AuthorizationPage />}/>
         <Route path="logout/" element={<Logout />}/>
         <Route path="registration/" element={<RegistrationPage />}/>
         <Route path="modelings/cart/" element={<CartPage />}/>
         <Route path="modelings/applications/" element={<ApplicationsPage />}/>
-        <Route path="/modelings/applications/detail/:id" element={<AppDetail />}/>
+        <Route path="/modelings/applications/:id/" element={<AppDetail />}/>
       </Routes>
       <ToastContainer position="top-right" autoClose={1000} />
     </RouterComponent>

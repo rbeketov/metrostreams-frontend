@@ -22,7 +22,7 @@ export const getBucket = (draft_id) => async (dispatch) => {
   }
 };
 
-export const addModelingToBucket = (modeling_id) => async (dispatch, getState) => {
+export const addModelingToBucket = (modeling_id) => async (dispatch) => {
   try {
     const response = await axios.post(
       `http://localhost:80/api/modelings/add/`,

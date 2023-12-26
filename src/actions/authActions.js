@@ -16,8 +16,6 @@ export const loginUser = (login, password) => async (dispatch) => {
     });
 
     dispatch(loginSuccess({ user: response.data }));
-    //toast.success('Вход выполнен успешно');
-    //redirectTo('/modelings');
   } catch (error) {
     toast.error('Неверный логин или пароль');
   }

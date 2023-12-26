@@ -13,22 +13,18 @@ import InputField from './InputField';
 import ModelingsCard from './ModelCard';
 import FooterAnyMetro from './Footer';
 import '../style/ModelingsPage.css';
-import { getBucket } from '../actions/bucketActions';
 
 
 const ModelingsPage = () => {
   const dispatch = useDispatch();
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
   const { searchValue, modelings, loading, minPrice, maxPrice } = useSelector(
     (state) => state.modelings
   );
 
-  // const draft_id = useSelector((state) => state.bucket.draft_id);
 
   const handleSearchSubmit = async () => {
-    dispatch(setModelingAction(searchValue, minPrice, maxPrice));
+    await dispatch(setModelingAction(searchValue, minPrice, maxPrice));
   };
 
   const handleMinSliderChange = (value) => {
@@ -47,19 +43,12 @@ const ModelingsPage = () => {
 
   useEffect(() => {
     handleSearchSubmit();
-  }, [dispatch, searchValue, minPrice, maxPrice]);
-
-  // useEffect(() => {
-  //   if (isAuthenticated && draft_id) {  
-  //     dispatch(getBucket(draft_id));
-  //   }
-  // }, [dispatch, isAuthenticated, draft_id]);
-
+  }, []);
 
   return (
     <div>
-      <NavbarAnyMetro />
-      <Header showCart={true} showApp={true}/>
+      <NavbarAnyMetro showConstructor={true} />
+      <Header showCart={true} showApp={true} showConstructor={false}/>
       <InputField
         value={searchValue}
         setValue={(value) => dispatch(setSearchValueAction(value))}

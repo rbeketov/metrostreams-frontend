@@ -11,6 +11,7 @@ const ModelingsCard = ({
   modeling_name,
   modeling_price,
   modeling_image,
+  modeling_status,
 }) => {
 
   const dispatch = useDispatch();
@@ -25,9 +26,9 @@ const ModelingsCard = ({
   };
 
   return (
-    <div className="custom-card">
+    <div className={`custom-card ${modeling_status === 'WITH'? 'inactiv' : ''}`}>
       <Link to={`/modelings/${modeling_id}`} className="card-href">
-        <img src={`${modeling_image}`} alt={modeling_name} className="custom-card-img" />
+        <img src={`${modeling_image}`} alt={modeling_name} className={`${modeling_status === 'WITH'? 'inactiv-img' : 'custom-card-img'}`} />
         <div className="custom-card-body">
           <p className="custom-card-text text-center">{modeling_name}</p>
           <p className="custom-card-price text-center">{modeling_price} рублей</p>

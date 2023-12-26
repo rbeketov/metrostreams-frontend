@@ -1,4 +1,7 @@
 // modelingActions.js
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
 import {
   setSearchValue,
   setModelings,
@@ -25,7 +28,8 @@ const filterModelings = (
   return filteredData;
 };
 
-export const setModelingAction = (searchValue, minPrice, maxPrice) => async (dispatch, getState) => {
+
+export const setModelingAction = (searchValue, minPrice, maxPrice) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
 
@@ -63,4 +67,67 @@ export const setMinPriceAction = (minPrice) => (dispatch) => {
 
 export const setMaxPriceAction = (maxPrice) => (dispatch) => {
   dispatch(setMaxPrice(maxPrice));
+};
+
+export const getModelingsForEdit = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`http://localhost:80/api/modelings/?name=&price_under=0&price_upper=999999`,
+    {
+      withCredentials: true,
+    });
+
+    const modelingImageData = [];
+
+    for (const model of response.data.modeling_objects) {
+      modelingImageData.push({
+        modeling_id: model.modeling_id,
+        modeling_name: model.modeling_name,
+        modeling_price: model.modeling_price,
+        modeling_image: '/mock.jpg',
+        modeling_status: model.modeling_status,
+      });
+    }
+  
+    dispatch(setModelings(modelingImageData));
+
+  } catch (error) {
+    console.error('Ошибка во время отзыва вида моделирования:', error);
+  }
+}
+
+export const withdrawModeling = (id) => async () => {
+  try {
+    if (id) {
+      await axios.put(`http://localhost:80/api/modelings/${id}/withdraw/`, {
+        withCredentials: true,
+      });
+    }
+  } catch (error) {
+    console.error('Ошибка во время отзыва вида моделирования:', error);
+  }
+};
+
+export const recoverModeling = (id) => async () => {
+  try {
+    if (id) {
+      await axios.put(`http://localhost:80/api/modelings/${id}/recover/`, {
+        withCredentials: true,
+      });
+    }
+
+  } catch (error) {
+    console.error('Ошибка во время введения вида моделирования:', error);
+  }
+};
+
+export const deleteModeling = (id) => async () => {
+  try {
+    if (id) {
+      await axios.delete(`http://localhost:80/api/modelings/${id}/delete/`, {
+        withCredentials: true,
+      });
+    }
+  } catch (error) {
+    toast.warning('Невозможно удалить услугу в работе');
+  }
 };

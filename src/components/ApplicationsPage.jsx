@@ -7,7 +7,6 @@ import TableRow from './TableRow';
 import { useCustomNavigate } from '../modules/redirect'
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
-import { Spinner } from 'react-bootstrap';
 import InputFieldApplications from './InputFieldApplications';
 
 import { setSearchValueAction, setMaxDateAction, setMinDateAction, setSearchStatusAction } from '../actions/applicationActions'
@@ -87,6 +86,9 @@ const ApplicationsPage = () => {
                   <th>Пользователь</th>  
                 )}
                 <th>Статус</th>
+                {isModerator && (
+                  <th>Действие</th>  
+                )}
               </tr>
             </thead>
 
@@ -100,7 +102,10 @@ const ApplicationsPage = () => {
             </tbody>
           </table>
         ) : (
-          <p>Пока что у вас нет заявок</p>
+          isModerator?
+          <p>Пока что нет заявок</p>
+          :
+          <p>Пока что у Вас нет заявок</p>
         )}
       </div>
     </div>

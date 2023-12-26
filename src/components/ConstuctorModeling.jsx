@@ -1,65 +1,35 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateModelingDetails, getModelingsDetails, createModelings } from '../actions/modelingsDetailsActions';
-import { toInitState } from '../slices/modelingsDetailsSlice.js'
+import { setModelingDetailField, toInitState } from '../slices/modelingsDetailsSlice.js';
 import NavbarAnyMetro from './Navbar';
 import Header from './Header';
-import { useCustomNavigate } from '../modules/redirect'
-
+import { useCustomNavigate } from '../modules/redirect';
+import '../style/ConstuctorModeling.css';
 
 const ConstructorPage = () => {
   const dispatch = useDispatch();
   const navigate = useCustomNavigate();
   const { id } = useParams();
 
-  const [formData, setFormData] = useState({
-    modeling_name: '',
-    modeling_description: '',
-    modeling_price: '',
-    modeling_image: null, 
-    load: null,
-  });
-
-
   useEffect(() => {
     if (id === "0") {
-      setFormData({
-        modeling_name: '',
-        modeling_description: '',
-        modeling_price: '',
-        modeling_image: null,
-        load: null,
-      });
       dispatch(toInitState());
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (id !== null && id !== "0") {
-        dispatch(getModelingsDetails(id));
+    } else if (id !== null && id !== "0") {
+      dispatch(getModelingsDetails(id));
     }
   }, [id]);
 
   const details = useSelector((state) => state.modelingsDetails.details);
-
-  useEffect(() => {
-    if (details) {
-      setFormData({
-        modeling_name: details.modeling_name,
-        modeling_description: details.modeling_description,
-        modeling_price: details.modeling_price,
-        modeling_image: details.modeling_image ? details.modeling_image : null,
-        load: details.load,
-      });
-    }
-  }, [details]);
+  console.log(details);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: name === 'modeling_image' ? files[0] : value,
+  
+    dispatch(setModelingDetailField({
+      fieldName: name,
+      fieldValue: name === 'modeling_image' ? files[0] : value,
     }));
   };
 
@@ -67,13 +37,13 @@ const ConstructorPage = () => {
     e.preventDefault();
     
     const data = {
-        modeling_name: formData.modeling_name,
-        modeling_description: formData.modeling_description,
-        modeling_price: formData.modeling_price,
-        modeling_image: formData.modeling_image,
-        load: formData.load,
+        modeling_name: details.modeling_name,
+        modeling_description: details.modeling_description,
+        modeling_price: details.modeling_price,
+        modeling_image: (typeof(details.modeling_image) === 'object') ? details.modeling_image : null,
+        load: details.load,
+    };
 
-    }
     if (id !== null && id !== "0") {
         await dispatch(updateModelingDetails(id, data));
         navigate('/modelings/edit');
@@ -87,48 +57,66 @@ const ConstructorPage = () => {
 
   return (
     <div>
-      <NavbarAnyMetro />
+      <NavbarAnyMetro showConstructor={true} />
       <Header showCart={false} showApp={true} showConstructor={true} />
       <div className="model-card">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form-grid">
           <div className="model-card-image">
             <img
-              src={formData.modeling_image === null ? "/mock.jpg" : (typeof(formData.modeling_image) === 'object') ? 
-                                            URL.createObjectURL(formData.modeling_image) : formData.modeling_image}
+              src={details.modeling_image === null ? "/mock.jpg" : (typeof(details.modeling_image) === 'object') ? 
+                URL.createObjectURL(details.modeling_image) : details.modeling_image}
               alt={details?.modeling_name}
               className="model-detail-card"
             />
-            <input type="file" name="modeling_image" onChange={handleChange} accept="image/*" />
+            <input className="file-input" type="file" name="modeling_image" onChange={handleChange} accept="image/*" />
           </div>
           <div className="model-card-description">
-            <input
-              type="text"
-              name="modeling_name"
-              value={formData.modeling_name}
-              onChange={handleChange}
-              placeholder="Название"
-            />
-            <textarea
-              name="modeling_description"
-              value={formData.modeling_description}
-              onChange={handleChange}
-              placeholder="Описание"
-            />
-            <input
-              type="text"
-              name="modeling_price"
-              value={formData.modeling_price}
-              onChange={handleChange}
-              placeholder="Цена"
-            />
-            <input
-              type="number"
-              name="load"
-              value={formData.load}
-              onChange={handleChange}
-              placeholder="Загруэенность в %"
-            />
-            <button type="submit">Сохранить</button>
+            <div className="form-field">
+                <label htmlFor="modeling_name">Название:</label>
+                <input
+                  type="text"
+                  name="modeling_name"
+                  value={details.modeling_name}
+                  onChange={handleChange}
+                  placeholder="Введите название"
+                  className="form-control"
+                />
+            </div>
+            <div className="form-field">
+                <label htmlFor="modeling_description">Описание:</label>
+                <textarea
+                  name="modeling_description"
+                  value={details.modeling_description}
+                  onChange={handleChange}
+                  placeholder="Введите описание"
+                  className="description-area form-control"
+                />
+            </div>
+            <div className="form-field">
+                <label htmlFor="modeling_price">Цена в рублях:</label>
+                <input
+                  type="text"
+                  name="modeling_price"
+                  value={details.modeling_price}
+                  onChange={handleChange}
+                  placeholder="Введите цену"
+                  className="form-control"
+                />
+            </div>
+            <div className="form-field">
+                <label htmlFor="load">Загруженность в %:</label>
+                <input
+                  type="number"
+                  name="load"
+                  value={details.load}
+                  onChange={handleChange}
+                  placeholder="Введите загруженность"
+                  className="form-control"
+                />
+            </div>
+            <div className="form-field">
+                <button className='btn-save' type="submit">Сохранить</button>
+            </div>
           </div>
         </form>
       </div>

@@ -43,5 +43,33 @@
   cursor: pointer;
 }
 
+.form-button {
+  color: #ffffff;
+  padding: 5px 12px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 12px;
+  margin-top: 2px!important;
+}
+
+.complete-button {
+  background-color: #12954f;
+}
+
+.complete-button:hover {
+  background-color: #0e6b3a;
+  cursor: pointer;
+}
+
+.reject-button {
+  background-color: #a33415;
+}
+
+.reject-button:hover {
+  cursor: pointer;
+  background-color: #7e2107
+}
+
 
 

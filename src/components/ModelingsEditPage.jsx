@@ -24,7 +24,7 @@ const ModelingsEditPage = () => {
 
   return (
     <div>
-      <NavbarAnyMetro/>
+      <NavbarAnyMetro showConstructor={true}/>
       <Header showCart={false} showApp={true} showConstructor={true}/>
       <Container className="mx-auto">
         <div>

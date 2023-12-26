@@ -35,7 +35,7 @@ const InputFieldApplications = ({
         startDate={minDate !== '' ? moment(minDate).toDate() : ''}
         endDate={maxDate !== '' ? moment(maxDate).toDate() : ''}
         placeholderText="Начальная дата"
-        className="form-control"
+        className="form-control custom-color"
         locale={ru}
         dateFormat="yyyy-MM-dd"
         maxDate={parseISO('2025-12-10')}
@@ -48,7 +48,7 @@ const InputFieldApplications = ({
         startDate={minDate !== '' ? moment(minDate).toDate() : ''}
         endDate={maxDate !== '' ? moment(maxDate).toDate() : ''}
         placeholderText="Конечная дата"
-        className="form-control"
+        className="form-control custom-color"
         locale={ru}
         dateFormat="yyyy-MM-dd"
         maxDate={parseISO('2025-12-10')}
@@ -58,6 +58,7 @@ const InputFieldApplications = ({
         as="select"
         value={status}
         onChange={(e) => setStatus(e.target.value)}
+        className='custom-color'
       >
         <option value="">Выберите статус</option>
         <option value="WORK">Сформирована</option>

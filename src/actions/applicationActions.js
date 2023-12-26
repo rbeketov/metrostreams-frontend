@@ -58,3 +58,33 @@ export const setMaxDateAction = (maxDate) => (dispatch) => {
 export const setSearchStatusAction = (status) => (dispatch) => {
   dispatch(setStatus(status));
 };
+
+export const completeApplication = (id) => async () => {
+  try {
+    await axios.put(`http://localhost:80/api/applications/${id}/set_status/`, 
+    {
+      status : 'COMP',
+    },
+    {
+      withCredentials: true,
+    });
+
+  } catch (error) {
+    console.error('Ошибка при завершении заявки:', error);
+  }
+};
+
+export const rejectApplication = (id) => async () => {
+  try {
+    await axios.put(`http://localhost:80/api/applications/${id}/set_status/`, 
+    {
+      status : 'CANC',
+    },
+    {
+      withCredentials: true,
+    });
+
+  } catch (error) {
+    console.error('Ошибка при отклонении заявки:', error);
+  }
+};

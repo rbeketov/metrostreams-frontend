@@ -126,7 +126,7 @@ const CartPage = () => {
   const navigate = useCustomNavigate();
 
   useEffect(() => {
-    if (user && user.role === 'USR') {
+    if (user) {
       dispatch(getBucket(bucket.draft_id));
     } else {
       navigate('/modelings');

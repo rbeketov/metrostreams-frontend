@@ -17,10 +17,7 @@ const ModelingsCard = ({
   const dispatch = useDispatch();
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const user = useSelector((state) => state.auth.user);
 
-  const isUserAuthorized = isAuthenticated && user && user.role === 'USR';
-  
   const handleAddToBucket = () => {
     dispatch(addModelingToBucket(modeling_id));
   };
@@ -36,7 +33,7 @@ const ModelingsCard = ({
       </Link>
       
   
-      {isUserAuthorized && (
+      {isAuthenticated && modeling_status !== 'WITH' && (
         <div className="add-to-cart-container">
           <button className="add-to-cart-button" onClick={handleAddToBucket}>
             В корзину

@@ -6,6 +6,7 @@ export interface ModelingsDetailsData {
     modeling_description: string;
     modeling_price: string;
     modeling_image_url: string;
+    load: number;
 }
 
 export interface ModelingsDetailsImage {
@@ -13,6 +14,7 @@ export interface ModelingsDetailsImage {
     modeling_description: string;
     modeling_price: string;
     modeling_image: string;
+    load: number;
 }
 
 const mockModelingDetails: ModelingsDetailsImage = {
@@ -20,6 +22,7 @@ const mockModelingDetails: ModelingsDetailsImage = {
     modeling_description: 'Тут должна быть информация о продукте моделирования',
     modeling_price: '(Тут должна быть цена)',
     modeling_image: '/mock.jpg',
+    load: 88,
 };
 
 export const getModelingsDetail = async (id: number): Promise<ModelingsDetailsImage> => {

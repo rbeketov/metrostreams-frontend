@@ -29,22 +29,20 @@ const Header = ({ showCart, showApp, showConstructor }) => {
         </Link>
       )}
 
-      {isAuthenticated && (
-        showCart && !isModerator ? (
-            <Link to={isCartActive ? "/modelings/cart" : "#"} className="cart-link">
-              <div className={`cart-icon-container bucket-style ${isCartActive ? '' : 'inactive-cart'}`} disabled={!isCartActive}>
-                <FaShoppingCart size={30} className="" />
-              </div>
-            </Link>
-          ) : isModerator && showConstructor && (
-            <Link to={"/modelings/edit/0"} className="cart-link">
-              <div className="applications-button">
-                Создать вид моделирования
-              </div>
-            </Link>
-          )
-        )}
-        
+      {isAuthenticated && showCart && (
+        <Link to={isCartActive ? "/modelings/cart" : "#"} className="cart-link">
+          <div className={`cart-icon-container bucket-style ${isCartActive ? '' : 'inactive-cart'}`} disabled={!isCartActive}>
+            <FaShoppingCart size={30} className="" />
+          </div>
+        </Link>
+      )}
+      {isModerator && showConstructor && (
+        <Link to={"/modelings/edit/0"} className="cart-link">
+          <div className="applications-button">
+            Создать вид моделирования
+          </div>
+        </Link>
+      )}    
     </div>
   );
 };

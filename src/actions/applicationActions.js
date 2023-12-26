@@ -2,8 +2,6 @@
 
 import axios from 'axios';
 import { getApplicationsSuccess, setSearchValue, setMaxDate, setMinDate, setStatus } from '../slices/applicationSlice'
-// import { parse, format } from 'date-fns';
-// import moment from 'moment/moment';
 
 const convertDateString = (input) => {
   const day = input.getDate();

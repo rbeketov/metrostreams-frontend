@@ -7,11 +7,14 @@ const modelingsDetailsSlice = createSlice({
     details: {},
   },
   reducers: {
-    getModelingsDetailsSlice: (state, action) => {
+    setModelingsDetailsSlice: (state, action) => {
       state.details = action.payload;
+    },
+    toInitState: (state) => {
+      state.details = {};
     },
   },
 });
 
-export const { getModelingsDetailsSlice } = modelingsDetailsSlice.actions;
+export const { setModelingsDetailsSlice, toInitState } = modelingsDetailsSlice.actions;
 export default modelingsDetailsSlice.reducer;

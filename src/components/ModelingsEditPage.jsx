@@ -25,7 +25,7 @@ const ModelingsEditPage = () => {
   return (
     <div>
       <NavbarAnyMetro/>
-      <Header showCart={true} showApp={true} showConstructor={true}/>
+      <Header showCart={false} showApp={true} showConstructor={true}/>
       <Container className="mx-auto">
         <div>
           {!modelings?.length ? (

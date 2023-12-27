@@ -21,16 +21,8 @@ const Header = ({ showCart, showApp, showConstructor }) => {
       <div className="breadcrumbs-container">
         <Breadcrumbs />
       </div>
-      {isAuthenticated && showApp && (
-        <Link to="/modelings/applications" className="applications-link">
-          <div className="applications-button">
-            {isModerator ? "Управление заявками" : "Заявки"}
-          </div>
-        </Link>
-      )}
-
       {isAuthenticated && showCart && (
-        <Link to={isCartActive ? "/modelings/cart" : "#"} className="cart-link">
+        <Link to={isCartActive ? `/modelings/applications/${draft_id}/` : "#"} className="cart-link">
           <div className={`cart-icon-container bucket-style ${isCartActive ? '' : 'inactive-cart'}`} disabled={!isCartActive}>
             <FaShoppingCart size={30} className="" />
           </div>

@@ -9,7 +9,13 @@ import NavbarAnyMetro from './Navbar';
 import Header from './Header';
 import InputFieldApplications from './InputFieldApplications';
 
-import { setSearchValueAction, setMaxDateAction, setMinDateAction, setSearchStatusAction } from '../actions/applicationActions'
+import {
+  setSearchValueAction,
+  setMaxDateAction,
+  setMinDateAction,
+  setSearchStatusAction,
+  filterApplicationsUser,
+} from '../actions/applicationActions'
 
 const SHORT_POLLING_INTERVAL = 5000
 
@@ -21,7 +27,7 @@ const ApplicationsPage = () => {
   const navigate = useCustomNavigate();
   const user = useSelector((state) => state.auth.user);
 
-  const applications = useSelector((state) => state.applications.applications);
+  let applications = useSelector((state) => state.applications.applications);
 
   const { minDate, maxDate, status, nameUser } = useSelector(
     (state) => state.applications
@@ -55,7 +61,7 @@ const ApplicationsPage = () => {
 
   return (
     <div>
-      <NavbarAnyMetro />
+      <NavbarAnyMetro showConstructor={true} />
       <Header showCart={false} showApp={false} />
       { isModerator && (
           <InputFieldApplications
@@ -93,7 +99,7 @@ const ApplicationsPage = () => {
             </thead>
 
             <tbody>
-              {applications.map((application) => (
+              {filterApplicationsUser(applications, nameUser).map((application) => (
                   <TableRow
                     key={application.application_id}
                     application={application}

@@ -12,7 +12,7 @@ const convertDateString = (input) => {
 };
 
 
-const filterApplicationsUser = (
+export const filterApplicationsUser = (
   data,
   nameUser,
 ) => {

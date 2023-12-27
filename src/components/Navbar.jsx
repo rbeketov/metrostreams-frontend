@@ -9,8 +9,6 @@ import logoImage from '/logo.png';
 import '../style/Navbar.css';
 import personIcon from '/logo-user.png';
 
-// import { loginUser } from '../actions/authActions';
-
 import UserProfileMenuPortal from './UserProfileMenuPortal';
 
 
@@ -47,6 +45,12 @@ function NavbarAnyMetro({ showConstructor = false }) {
               Редактирование видов моделирования
             </Link>
           )}
+          {isAuthenticated && (
+            <Link to="/modelings/applications" className="btns-log">
+              {isModerator ? "Управление заявками" : "Заявки"}
+            </Link>
+          )
+          }
           <Link to="/modelings" className="btns-log">
             Модели
           </Link>

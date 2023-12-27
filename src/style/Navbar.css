@@ -29,7 +29,7 @@
     font-size: 17px;
     text-decoration: none;
     font-weight : inherit;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
 .btns-log:hover {
@@ -100,7 +100,7 @@
   }
 
 .user-name {
-  margin-top: 6.3px;
+  margin-top: 6px;
   margin-right: 10px;
   color: white;
   font-family: 'Roboto', sans-serif;

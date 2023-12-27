@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import '../style/ModelCard.css';
 import { addModelingToBucket } from '../actions/bucketActions';
-
+import { setModelingAction } from '../actions/modelingsActions';
 
 
 const ModelingsCard = ({
@@ -18,8 +18,13 @@ const ModelingsCard = ({
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  const handleAddToBucket = () => {
-    dispatch(addModelingToBucket(modeling_id));
+  const { searchValue, minPrice, maxPrice } = useSelector(
+    (state) => state.modelings
+  );
+
+  const handleAddToBucket = async () => {
+    await dispatch(addModelingToBucket(modeling_id));
+    await dispatch(setModelingAction(searchValue, minPrice, maxPrice));
   };
 
   return (

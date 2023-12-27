@@ -135,7 +135,7 @@ const CartPage = () => {
 
   return (
     <div>
-      <NavbarAnyMetro />
+      <NavbarAnyMetro showConstructor={true} />
       <Header showCart={false} showApp={true}/>
       <div className="applications-container">
         {bucket.draft_id !== null && (

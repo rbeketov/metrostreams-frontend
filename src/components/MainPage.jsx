@@ -22,8 +22,8 @@ const MainPage = () => {
 
   return (
     <div>
-      <NavbarAnyMetro />
-      <Header showCart={false} showApp={true} />
+      <NavbarAnyMetro showConstructor={true}/>
+      <Header showCart={false} />
       <Label />
       <div className="hrContainer"></div>
       <section style={sectionStyle} className="py-5 text-center sectionContent">

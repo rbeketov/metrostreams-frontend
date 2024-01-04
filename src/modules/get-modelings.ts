@@ -1,4 +1,5 @@
 import axios from 'axios';
+import mockImg from '/mock.jpg'
 
 export interface ModelingImage {
   modeling_id: number;
@@ -21,35 +22,35 @@ const mockModelings: ModelingImage[] = [
     modeling_id: 1,
     modeling_name: 'Станция Щёлковская',
     modeling_price: '1199.00',
-    modeling_image: '/mock.jpg',
+    modeling_image: mockImg,
     modeling_status: 'WORK',
   },
   {
     modeling_id: 2,
     modeling_name: 'Станция Бауманская',
     modeling_price: '1299.00',
-    modeling_image: '/mock.jpg',
+    modeling_image: mockImg,
     modeling_status: 'WORK',
   },
   {
     modeling_id: 3,
     modeling_name: 'Станция Аэропорт',
     modeling_price: '5399.00',
-    modeling_image: '/mock.jpg',
+    modeling_image: mockImg,
     modeling_status: 'WORK',
   },
   {
     modeling_id: 4,
     modeling_name: 'Станция Митино',
     modeling_price: '999.00',
-    modeling_image: '/mock.jpg',
+    modeling_image: mockImg,
     modeling_status: 'WORK',
   },
   {
     modeling_id: 5,
     modeling_name: 'Станция Курская',
     modeling_price: '5399.00',
-    modeling_image: '/mock.jpg',
+    modeling_image: mockImg,
     modeling_status: 'WORK',
   },
 ];
@@ -89,7 +90,7 @@ export const getModelings = async (name = '', minPrice = 0, maxPrice = 99000): P
           modeling_id: model.modeling_id,
           modeling_name: model.modeling_name,
           modeling_price: model.modeling_price,
-          modeling_image: modelingImage || '/mock.jpg',
+          modeling_image: modelingImage || mockImg,
           modeling_status: model.modeling_status,
         });
       }

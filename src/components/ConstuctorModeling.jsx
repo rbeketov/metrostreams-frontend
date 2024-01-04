@@ -8,6 +8,8 @@ import Header from './Header';
 import { useCustomNavigate } from '../modules/redirect';
 import '../style/ConstuctorModeling.css';
 
+import mockImg from '/mock.jpg'
+
 const ConstructorPage = () => {
   const dispatch = useDispatch();
   const navigate = useCustomNavigate();
@@ -63,7 +65,7 @@ const ConstructorPage = () => {
         <form onSubmit={handleSubmit} className="form-grid">
           <div className="model-card-image">
             <img
-              src={details.modeling_image === null ? "/mock.jpg" : (typeof(details.modeling_image) === 'object') ? 
+              src={details.modeling_image === null ? mockImg : (typeof(details.modeling_image) === 'object') ? 
                 URL.createObjectURL(details.modeling_image) : details.modeling_image}
               alt={details?.modeling_name}
               className="model-detail-card"

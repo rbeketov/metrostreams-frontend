@@ -1,6 +1,8 @@
 import { getImageForModeling } from './get-modelings';
 import axios from 'axios';
 
+import mockImg from '/mock.jpg'
+
 export interface ModelingsDetailsData {
     modeling_name: string;
     modeling_description: string;
@@ -21,7 +23,7 @@ const mockModelingDetails: ModelingsDetailsImage = {
     modeling_name: 'Тут должен быть продукт моделирования',
     modeling_description: 'Тут должна быть информация о продукте моделирования',
     modeling_price: '(Тут должна быть цена)',
-    modeling_image: '/mock.jpg',
+    modeling_image: mockImg,
     load: 88,
 };
 

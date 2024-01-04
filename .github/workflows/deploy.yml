@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - base-spa
+      - moderator_page
 
 jobs:
   build:
@@ -38,7 +38,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/base-spa'
+    if: github.ref == 'refs/heads/moderator_page'
 
     steps:
       - name: Download artifact

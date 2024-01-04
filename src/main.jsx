@@ -27,6 +27,7 @@ const isLocal = window.location.hostname === 'localhost' || window.location.host
 const base_path = isLocal ? '/' : 'metrostreams-frontend/';
 const RouterComponent = BrowserRouter; // isLocal ? BrowserRouter : HashRouter;
 
+
 ReactDOM.render(
   <Provider store={store}>
     <RouterComponent>

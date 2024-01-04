@@ -25,8 +25,7 @@ import store from "./store";
 const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '0.0.0.0';
 
 const base_path = isLocal ? '/' : 'metrostreams-frontend/';
-const RouterComponent = BrowserRouter; // isLocal ? BrowserRouter : HashRouter;
-
+const RouterComponent = isLocal ? BrowserRouter : HashRouter;
 
 ReactDOM.render(
   <Provider store={store}>

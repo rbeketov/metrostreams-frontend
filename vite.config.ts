@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-
-const base_path = process.env.GITHUB_ACTIONS ? '/metrostreams-frontend/' : '/';
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '0.0.0.0';
+const base_path = isLocal ?  '/' : '/metrostreams-frontend/';
 
 
 // https://vitejs.dev/config/

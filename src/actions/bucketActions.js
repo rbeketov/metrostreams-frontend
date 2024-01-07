@@ -4,10 +4,10 @@ import { getApplicationById } from "../modules/get-application-byid.ts";
 
 import { toast } from 'react-toastify';
 
-export const getBucket = (draft_id) => async (dispatch) => {
-  try {
-    const application = await getApplicationById(draft_id);
 
+
+export const setBucket = (application) => async (dispatch) => {
+  try {
     if (application && application.modeling[0].modeling_id) {
         dispatch(setBucketItem(application.modeling));
         dispatch(setPeoplePerMinute(application.application_data.people_per_minute));
@@ -18,9 +18,22 @@ export const getBucket = (draft_id) => async (dispatch) => {
         dispatch(setTimeInterval(application.application_data.time_interval));
     }
   } catch (error) {
-    console.error('Error getBucket:', error);
+    console.error('Ошибка во время установки корзины:', error);
   }
 };
+
+
+export const getBucket = (draft_id) => async (dispatch) => {
+  try {
+    const application = await getApplicationById(draft_id);
+    dispatch(setBucket(application));
+  } catch (error) {
+    console.error('Ошибка во время получения корзины', error);
+  }
+};
+
+
+
 
 export const addModelingToBucket = (modeling_id) => async (dispatch) => {
   try {

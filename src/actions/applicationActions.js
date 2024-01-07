@@ -88,3 +88,19 @@ export const rejectApplication = (id) => async () => {
     console.error('Ошибка при отклонении заявки:', error);
   }
 };
+
+export const updateModelingResult = (id, modeling_id, new_result) => async () => {
+  try {
+    await axios.put(`http://localhost:80/api/applications/${id}/update_result_modeling/`, 
+    {
+      modeling_id,
+      new_result,
+    },
+    {
+      withCredentials: true,
+    });
+
+  } catch (error) {
+    console.error('Ошибка при обновлении результата моделирования:', error);
+  }  
+}

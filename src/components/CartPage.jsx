@@ -12,7 +12,7 @@ import Header from './Header';
 
 import '../style/CartPage.css'
 
-import { getBucket, deleteModelingFromBucket, setParametersBucket, sendBucket, delBucket } from '../actions/bucketActions'
+import { deleteModelingFromBucket, setParametersBucket, sendBucket, delBucket } from '../actions/bucketActions'
 
 
 const DraftApplicationTable = ({ bucket }) => {  
@@ -126,9 +126,7 @@ const CartPage = () => {
   const navigate = useCustomNavigate();
 
   useEffect(() => {
-    if (user) {
-      dispatch(getBucket(bucket.draft_id));
-    } else {
+    if (!user) {
       navigate('/modelings');
     }
   }, [dispatch]);

@@ -40,9 +40,8 @@ ReactDOM.render(
         <Route path="login/" element={<AuthorizationPage />}/>
         <Route path="logout/" element={<Logout />}/>
         <Route path="registration/" element={<RegistrationPage />}/>
-        <Route path="modelings/cart/" element={<CartPage />}/>
         <Route path="modelings/applications/" element={<ApplicationsPage />}/>
-        <Route path="/modelings/applications/:id/" element={<AppDetail />}/>
+        <Route path="modelings/applications/:id/" element={<AppDetail />}/>
       </Routes>
       <ToastContainer position="top-right" autoClose={1000} />
     </RouterComponent>
